@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:paddingRight="300dp"
+    android:paddingLeft="30dp"
+    tools:context=".ui.profile.ProfileActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perfil"
+        android:layout_gravity="center"
+        android:textSize="38dp"
+        android:fontFamily="@font/grotesk_medium"
+        android:layout_marginBottom="40dp"
+        />
+
+    <TextView
+        android:id="@+id/txtNombre_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombres"
+        android:padding="10dp"
+        android:layout_marginTop="14dp"
+        android:textSize="16dp"
+        />
+
+    <EditText
+        android:id="@+id/idNombre_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/grotesk_medium"
+        android:hint="Marco Antonio"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/txtApellidos_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apellidos"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="16dp"
+        />
+    <EditText
+        android:id="@+id/idApellidos_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/grotesk_medium"
+        android:textSize="18dp"
+        android:hint="Atencio Maravi"
+        />
+    <TextView
+        android:id="@+id/txtEmail_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="16dp"
+        />
+    <EditText
+        android:id="@+id/idEmail_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:fontFamily="@font/grotesk_medium"
+        android:hint="982314123"
+        android:drawableLeft="@drawable/ic_baseline_phone_24"
+        android:drawablePadding="5dp"
+        />
+
+    <TextView
+        android:id="@+id/txtDate_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Nacimiento"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:textSize="16dp"
+        />
+
+    <EditText
+        android:id="@+id/idDate_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/grotesk_medium"
+        android:hint="13-07-1999"
+        android:textSize="18dp" />
+    <Button
+        android:id="@+id/btn_Start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btn_round"
+        android:text="Actualizar"
+        android:textAllCaps="false"
+        android:textColor="@color/fontPrimary"
+        android:textSize="18dp"
+        app:backgroundTint="@color/primary" />
+
+
+</LinearLayout>

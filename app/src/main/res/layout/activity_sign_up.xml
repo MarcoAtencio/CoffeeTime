@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.SignUpActivity"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical"
+    android:padding="30dp"
+    >
+
+
+    <TextView
+        android:id="@+id/titleLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:text="@string/titleSignUp"
+        android:textColor="@color/fontTitle"
+        android:textSize="34dp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/txtUser"
+        android:layout_width="match_parent"
+        android:paddingLeft="20dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/input_style"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/txtUsuario"
+        android:inputType="textPersonName"
+
+        />
+    <EditText
+        android:id="@+id/txtpassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_style"
+        android:ems="10"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/txtContraseña"
+        android:inputType="textPersonName"
+
+        />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="50dp"
+        android:layout_marginBottom="52dp"
+        android:onClick="registerUser"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/btnRegistrar"
+        android:textColor="@color/fontPrimary"
+        app:backgroundTint="@color/primary"
+        app:cornerRadius="24dp" />
+
+
+
+</LinearLayout>

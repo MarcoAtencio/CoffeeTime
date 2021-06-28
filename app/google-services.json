@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "368399416658",
+    "firebase_url": "https://coffetime-api-default-rtdb.firebaseio.com",
+    "project_id": "coffetime-api",
+    "storage_bucket": "coffetime-api.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368399416658:android:7beea1ce939e0808e68e8b",
+        "android_client_info": {
+          "package_name": "com.example.coffeetime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368399416658-hf3df9pspf58n87dnjjnh346m9su3iei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtyymdE1vBQUsjNgVqdOiQNoafa4opt_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368399416658-hf3df9pspf58n87dnjjnh346m9su3iei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
