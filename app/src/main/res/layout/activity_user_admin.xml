@@ -7,3 +7,96 @@
     tools:context=".admin.user.UserAdminActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="20dp"
+    android:orientation="horizontal"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="180dp"
+            android:layout_margin="10dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_coffetime" />
+
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Codelia"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/stock_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="Francia"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/category_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="Francia"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/price_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="Francia"
+                android:textSize="19dp" />
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_margin="3dp"
+                android:textAllCaps="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:text="Agregar" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
