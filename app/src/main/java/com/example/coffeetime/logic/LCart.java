@@ -59,9 +59,9 @@ public class LCart {
     }
 
     private void showDataToRecyclerView() {
-        ProductAdapter productAdapter = new ProductAdapter(cart, context);
+        ProductCartAdapter productCartAdapter = new ProductCartAdapter(cart, context);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(productAdapter);
+        recyclerView.setAdapter(productCartAdapter);
     }
 }

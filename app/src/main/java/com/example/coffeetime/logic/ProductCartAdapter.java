@@ -10,20 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.coffeetime.R;
 import com.example.coffeetime.model.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.ViewHolder> {
     private List<Product> mData;
     private LayoutInflater mInflater;
     private Context context;
     private View.OnClickListener listener;
     LCart LCart = new LCart();
 
-    public ProductAdapter(List<Product> itemList, Context context ){
+    public ProductCartAdapter(List<Product> itemList, Context context ){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -33,13 +34,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public int getItemCount(){ return mData.size();}
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = mInflater.inflate(R.layout.product_element, null);
-        return new ViewHolder(view);
+    public ProductCartAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+
+        View view = mInflater.inflate(R.layout.product_cart_element, null);
+
+        return new ProductCartAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position){
+    public void onBindViewHolder(final ProductCartAdapter.ViewHolder holder, final int position){
         holder.bindData(mData.get(position));
     }
 
@@ -47,32 +50,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage;
-        TextView name, stock, category, price;
-        Button button;
+        TextView name, price;
 
         ViewHolder(View itemView){
             super(itemView);
-            iconImage = itemView.findViewById(R.id.iconImageView);
-            name = itemView.findViewById(R.id.name_);
-            stock = itemView.findViewById(R.id.stock_);
-            category = itemView.findViewById(R.id.category_);
-            price = itemView.findViewById(R.id.price_);
-            button = itemView.findViewById(R.id.button);
+            iconImage = itemView.findViewById(R.id.productImgCart);
+            name = itemView.findViewById(R.id.productNameCart);
+            price = itemView.findViewById(R.id.productPriceCart);
         }
 
         public void bindData(final Product item){
             Picasso.get().load(item.getPhotoURI()).into(iconImage);
             name.setText(item.getName());
-            stock.setText("Stock: " + item.getStock());
-            category.setText("Cat: " + item.getCategory());
             price.setText("S/: " + item.getPrice());
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context.getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
-                    LCart.addProduct(item);
-                }
-            });
         }
     }
 

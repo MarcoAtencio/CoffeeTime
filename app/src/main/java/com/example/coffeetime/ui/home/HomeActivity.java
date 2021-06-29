@@ -9,27 +9,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.coffeetime.R;
 import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.logic.LProduct;
-import com.example.coffeetime.logic.LCart;
 import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
-    LCart LCart = new LCart();
     RecyclerView recyclerView;
     LProduct lProducts;
+    Integer categoryProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        recyclerView = findViewById(R.id.listProduct);
-        lProducts= new LProduct(HomeActivity.this, recyclerView);
+        recyclerView = findViewById(R.id.listProduct_);
     }
 
 
@@ -72,6 +72,34 @@ public class HomeActivity extends AppCompatActivity {
         return  super.onOptionsItemSelected(item);
     }
 
+       /*
+    StarterPlate =1
+    dish = 2
+    drinks = 3
+    desserts = 4
+     */
+    public void ShowStarterPlate(View view){
+        Toast.makeText(HomeActivity.this,"StarterPlate",Toast.LENGTH_SHORT).show();
+        categoryProduct = 1;
+        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    }
 
+    public void ShowDish(View view){
+        Toast.makeText(HomeActivity.this,"Dish",Toast.LENGTH_SHORT).show();
+        categoryProduct = 2;
+        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    }
+
+    public void ShowDrinks(View view){
+        Toast.makeText(this,"Drinks",Toast.LENGTH_SHORT).show();
+        categoryProduct = 3;
+        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    }
+
+    public void ShowDesserts(View view){
+        Toast.makeText(this,"Desserts",Toast.LENGTH_SHORT).show();
+        categoryProduct = 4;
+        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    }
 
 }
