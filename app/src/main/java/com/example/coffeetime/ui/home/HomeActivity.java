@@ -2,53 +2,34 @@ package com.example.coffeetime.ui.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.coffeetime.R;
-import com.example.coffeetime.admin.product.ProductActivity;
-import com.example.coffeetime.admin.sales.SalesActivity;
-import com.example.coffeetime.admin.user.UserActivity;
 import com.example.coffeetime.auth.SignInActivity;
-import com.example.coffeetime.model.Cart;
-import com.example.coffeetime.model.Product;
-import com.example.coffeetime.model.ProductAdapter;
+import com.example.coffeetime.logic.LProduct;
+import com.example.coffeetime.logic.LCart;
 import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    ArrayList<Product> listProduct = new ArrayList<Product>();
+    LCart LCart = new LCart();
+    RecyclerView recyclerView;
+    LProduct lProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        initFirebase();
-        listProduct();
+        recyclerView = findViewById(R.id.listProduct);
+        lProducts= new LProduct(HomeActivity.this, recyclerView);
     }
 
 
@@ -92,37 +73,5 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    private void initFirebase(){
-        FirebaseApp.initializeApp(this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
-    }
 
-    public void listProduct(){
-        databaseReference.child("Product").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
-                listProduct.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Product product = dataSnapshot.getValue(Product.class);
-                    listProduct.add(product);
-                    Toast.makeText(HomeActivity.this,product.getName(),Toast.LENGTH_SHORT).show();
-                }
-
-                mostrarData();
-            }
-            @Override
-            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
-                Toast.makeText(HomeActivity.this,"Aviso De Error",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void mostrarData() {
-        ProductAdapter productAdapter = new ProductAdapter(listProduct, this);
-        RecyclerView recyclerView = findViewById(R.id.listProduct);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(productAdapter);
-    }
 }

@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    android:orientation="vertical"
+    android:paddingTop="30dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
     tools:context=".ui.cart.CartActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:background="@null"
+        android:layout_gravity="left"
+
+    />
+    <TextView
+        android:id="@+id/titleCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:fontFamily="@font/grotesk_medium"
+        android:text="@string/titleCart"
+        android:textColor="@color/fontTitle"
+        android:textSize="48sp"
+        android:textStyle="bold"
+    />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+    <!--Montos a Pagar-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:layout_marginTop="20dp"
+    >
+        <TextView
+            android:id="@+id/txtSubtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="SubTotal"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            android:fontFamily="@font/grotesk_medium"
+            android:layout_weight="1"
+        />
+
+        <TextView
+            android:id="@+id/precioSubtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textAlignment="textEnd"
+            android:text="S/.40.87"
+            android:textColor="#0C1423"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+    >
+        <TextView
+            android:id="@+id/idDescuento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="IGV"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+        />
+
+        <TextView
+            android:id="@+id/montoIGV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textAlignment="textEnd"
+            android:text="S/.6.87"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+        />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:layout_margin="1dp"
+    >
+        <TextView
+            android:id="@+id/idTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Total"
+            android:textColor="#F43127"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+        />
+
+        <TextView
+            android:id="@+id/montoTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="S/.40.87"
+            android:textAlignment="textEnd"
+            android:textColor="#0C1423"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+        />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_Start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btn_round"
+        android:text="@string/btnPagar"
+        android:textAllCaps="false"
+        android:textColor="@color/fontPrimary"
+        android:textSize="18dp"
+        app:backgroundTint="@color/primary" />
+</LinearLayout>

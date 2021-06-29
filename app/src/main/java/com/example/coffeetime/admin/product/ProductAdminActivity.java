@@ -1,4 +1,4 @@
-package com.example.coffeetime.admin.user;
+package com.example.coffeetime.admin.product;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,17 +11,18 @@ import android.view.MenuItem;
 
 import com.example.coffeetime.R;
 import com.example.coffeetime.admin.home.HomeAdminActivity;
-import com.example.coffeetime.admin.product.ProductActivity;
 import com.example.coffeetime.admin.sales.SalesActivity;
+import com.example.coffeetime.admin.user.UserAdminActivity;
 import com.example.coffeetime.auth.SignInActivity;
 
-public class UserActivity extends AppCompatActivity {
+public class ProductAdminActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_product_admin);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -40,12 +41,12 @@ public class UserActivity extends AppCompatActivity {
                 break;
 
             case R.id.menu_product:
-                intent = new Intent(this, ProductActivity.class);
-                startActivity(intent);
-                break;
+                return true;
 
             case R.id.menu_user:
-                return true;
+                intent = new Intent(this, UserAdminActivity.class);
+                startActivity(intent);
+                break;
 
             case R.id.menu_sales:
                 intent = new Intent(this, SalesActivity.class);

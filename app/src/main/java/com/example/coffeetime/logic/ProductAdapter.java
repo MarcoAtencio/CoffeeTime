@@ -1,4 +1,4 @@
-package com.example.coffeetime.model;
+package com.example.coffeetime.logic;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffeetime.R;
+import com.example.coffeetime.model.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private LayoutInflater mInflater;
     private Context context;
     private View.OnClickListener listener;
-    Cart cart = new Cart();
+    LCart LCart = new LCart();
 
     public ProductAdapter(List<Product> itemList, Context context){
         this.mInflater = LayoutInflater.from(context);
@@ -69,7 +70,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context.getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
-                    cart.addProduct(item);
+                    LCart.addProduct(item);
                 }
             });
         }

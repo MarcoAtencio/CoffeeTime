@@ -1,9 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".admin.home.HomeAdminActivity">
+    android:paddingTop="20dp"
+    android:paddingRight="30dp"
+    android:paddingLeft="30dp"
+    tools:context=".admin.home.HomeAdminActivity"
+>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:padding="15dp"
+        android:text="Registrar Producto"
+        android:textAlignment="center"
+        android:fontFamily="@font/grotesk_medium"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    />
+
+    <EditText
+        android:id="@+id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Producto"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txt_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Categoria"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/txt_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Stock"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/txt_precio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Precio"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/txt_photo_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Url"
+        android:inputType="text" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FCB302"
+            android:text="Registrar"
+            android:padding="10dp"
+            android:layout_margin="8dp"
+            android:textColor="#0C1423"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp" />
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FCB302"
+            android:text="Buscar"
+            android:padding="10dp"
+            android:layout_margin="8dp"
+            android:textColor="#0C1423"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FCB302"
+            android:text="Actualizar"
+            android:layout_margin="8dp"
+            android:padding="10dp"
+            android:textColor="#0C1423"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp" />
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FCB302"
+            android:text="Eliminar"
+            android:padding="10dp"
+            android:layout_margin="8dp"
+            android:textColor="#0C1423"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

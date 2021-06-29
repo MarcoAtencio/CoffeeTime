@@ -10,9 +10,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.coffeetime.R;
-import com.example.coffeetime.admin.product.ProductActivity;
+import com.example.coffeetime.admin.product.ProductAdminActivity;
 import com.example.coffeetime.admin.sales.SalesActivity;
-import com.example.coffeetime.admin.user.UserActivity;
+import com.example.coffeetime.admin.user.UserAdminActivity;
 import com.example.coffeetime.auth.SignInActivity;
 
 public class HomeAdminActivity extends AppCompatActivity {
@@ -38,12 +38,12 @@ public class HomeAdminActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menu_product:
-                intent = new Intent(this, ProductActivity.class);
+                intent = new Intent(this, ProductAdminActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.menu_user:
-                intent = new Intent(this, UserActivity.class);
+                intent = new Intent(this, UserAdminActivity.class);
                 startActivity(intent);
                 break;
 
