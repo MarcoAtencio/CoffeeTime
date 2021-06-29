@@ -1,14 +1,18 @@
 package com.example.coffeetime.logic;
 
 import android.content.Context;
+import android.media.Image;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeetime.R;
@@ -17,17 +21,24 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.example.coffeetime.logic.LCart.cart;
+
 public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.ViewHolder> {
     private List<Product> mData;
     private LayoutInflater mInflater;
     private Context context;
     private View.OnClickListener listener;
-    LCart LCart = new LCart();
+    TextView tv_subTotal,tv_igv,tv_total;
+    LCart lCart = new LCart();
 
-    public ProductCartAdapter(List<Product> itemList, Context context ){
+    public ProductCartAdapter(List<Product> itemList, Context context, TextView tv_subTotal_, TextView tv_igv_, TextView tv_total_ ){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
+        tv_subTotal = tv_subTotal_;
+        tv_igv = tv_igv_;
+        tv_total = tv_total_;
+
     }
 
     @Override
@@ -48,21 +59,52 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
 
     public void setItem(List<Product> items){ mData = items; }
 
+    public void updateFieldToCart(){
+        tv_subTotal.setText("S/"+ lCart.subTotal());
+        tv_igv.setText("S/"+ lCart.igv());
+        tv_total.setText("S/"+ lCart.Total());
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage;
-        TextView name, price;
+        TextView name, price, cant;
+        ImageButton decreaseCant,increaseCant;
 
         ViewHolder(View itemView){
             super(itemView);
             iconImage = itemView.findViewById(R.id.productImgCart);
             name = itemView.findViewById(R.id.productNameCart);
             price = itemView.findViewById(R.id.productPriceCart);
+            cant = itemView.findViewById(R.id.productCantCart);
+            decreaseCant = itemView.findViewById(R.id.productDecreaseCantCart);
+            increaseCant = itemView.findViewById(R.id.productIncreaseCantCart);
         }
 
         public void bindData(final Product item){
             Picasso.get().load(item.getPhotoURI()).into(iconImage);
+            updateFieldsToProductCart(item);
+            decreaseCant.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onClick(View v) {
+                    item.decreaseCantProductCart();
+                    updateFieldsToProductCart(item);
+                }
+            });
+            increaseCant.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.increaseCantProductCart();
+                    updateFieldsToProductCart(item);
+                }
+            });
+        }
+
+        public void updateFieldsToProductCart(final Product item){
             name.setText(item.getName());
             price.setText("S/: " + item.getPrice());
+            cant.setText(""+item.getCantProductCart());
+            updateFieldToCart();
         }
     }
 

@@ -67,32 +67,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageButton
-                    android:padding="10dp"
+                    android:id="@+id/productDecreaseCantCart"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_minus"
+                    android:layout_weight="1"
                     android:background="@null"
-                />
+                    android:padding="10dp"
+                    android:src="@drawable/ic_minus" />
+
                 <TextView
+                    android:id="@+id/productCantCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_margin="20dp"
                     android:fontFamily="@font/grotesk_medium"
-                    android:layout_gravity="center"
                     android:text="3"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
+
                 <ImageButton
-                    android:padding="10dp"
+                    android:id="@+id/productIncreaseCantCart"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_add"
+                    android:layout_weight="1"
                     android:background="@null"
-                />
+                    android:padding="10dp"
+                    android:src="@drawable/ic_add" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -18,11 +18,11 @@ import java.util.ArrayList;
 
 public class LProduct {
 
-    public static final String STARTER_PLATE ="1";
-    public static final String  DISH = "2";
-    public static final String  DRINK = "3";
-    public static final String  DESSERT = "4";
-    static ArrayList<Product> listProduct = new ArrayList<Product>();
+    public final String STARTER_PLATE ="1";
+    public final String  DISH = "2";
+    public final String  DRINK = "3";
+    public final String  DESSERT = "4";
+    public static ArrayList<Product> listProduct = new ArrayList<Product>();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     Context context;
@@ -35,7 +35,8 @@ public class LProduct {
         recyclerView = recyclerView_;
         categorySelectProduct= categorySelectProduct_;
         initFirebase(context);
-        setDataToListProducts();
+        showDataToRecyclerView();
+
     }
 
     private void initFirebase(Context context){
@@ -44,26 +45,36 @@ public class LProduct {
         databaseReference = firebaseDatabase.getReference();
     }
 
-    public void setDataToListProducts(){
-        databaseReference.child("Product").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
-                listProduct.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Product product = dataSnapshot.getValue(Product.class);
-                    listProduct.add(product);
-                }
-                showDataToRecyclerView();
-            }
-            @Override
-            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
-            }
-        });
-    }
 
     public ArrayList<Product> getAllProduct(){
         return  listProduct;
     }
+
+    public ArrayList<Product> getProductToStarterPlate(){ return filterProductForCategory(STARTER_PLATE); }
+
+    public ArrayList<Product> getProductToDish(){
+        return filterProductForCategory(DISH);
+    }
+
+    public ArrayList<Product> getProductToDrink(){
+        return filterProductForCategory(DRINK);
+    }
+
+    public ArrayList<Product> getProductToDessert(){
+        return filterProductForCategory(DESSERT);
+    }
+
+    public ArrayList<Product> filterProductForCategory(String category){
+        ArrayList<Product> filterListForCategory = new  ArrayList<Product>();
+        for (int i=0; i< listProduct.size();i++){
+            Product product = listProduct.get(i);
+            if (product.getCategory().equals(category)){
+                filterListForCategory.add(product);
+            }
+        }
+        return filterListForCategory;
+    }
+
 
     private void showDataToRecyclerView() {
         ProductAdapter productAdapter;
@@ -92,35 +103,4 @@ public class LProduct {
     }
 
 
-    public ArrayList<Product> getProductToStarterPlate(){
-        return filterProductForCategory(STARTER_PLATE);
-    }
-
-    public ArrayList<Product> getProductToDish(){
-        return filterProductForCategory(DISH);
-    }
-
-    public ArrayList<Product> getProductToDrink(){
-        return filterProductForCategory(DRINK);
-    }
-
-    public ArrayList<Product> getProductToDessert(){
-        return filterProductForCategory(DESSERT);
-    }
-
-
-    public ArrayList<Product> filterProductForCategory(String category){
-        ArrayList<Product> filterListForCategory = new  ArrayList<Product>();
-        for (int i=0; i< listProduct.size();i++){
-            Product product = listProduct.get(i);
-            if (product.getCategory().equals(category)){
-                filterListForCategory.add(product);
-            }
-        }
-        return filterListForCategory;
-    }
-
-    public void cleanListProducts(){
-        listProduct.clear();
-    }
 }

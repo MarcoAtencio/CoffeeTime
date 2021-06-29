@@ -16,12 +16,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.example.coffeetime.logic.LCart.cart;
+
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     private List<Product> mData;
     private LayoutInflater mInflater;
     private Context context;
     private View.OnClickListener listener;
-    LCart LCart = new LCart();
 
     public ProductAdapter(List<Product> itemList, Context context ){
         this.mInflater = LayoutInflater.from(context);
@@ -70,7 +71,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context.getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
-                    LCart.addProduct(item);
+                    item.increaseCantProductCart();
+                    cart.add(item);
                 }
             });
         }

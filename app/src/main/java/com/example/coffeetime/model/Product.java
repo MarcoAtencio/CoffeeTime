@@ -9,8 +9,16 @@ public class Product  implements Serializable {
     String category;
     String photoURI;
     String stock;
+    Integer cantProductCart;
 
     public Product() {
+        this.uid = "";
+        this.name = "";
+        this.price = "";
+        this.category = "";
+        this.photoURI = "";
+        this.stock = "";
+        this.cantProductCart = 0;
     }
 
     public Product(String uid, String name, String price, String category, String photoURI, String stock) {
@@ -20,6 +28,7 @@ public class Product  implements Serializable {
         this.category = category;
         this.photoURI = photoURI;
         this.stock = stock;
+        this.cantProductCart = 0;
     }
 
     public String getUid() {
@@ -68,5 +77,21 @@ public class Product  implements Serializable {
 
     public void setStock(String stock) {
         this.stock = stock;
+    }
+
+    public Integer getCantProductCart() { return cantProductCart; }
+
+    public void setCantProductCart(Integer cantProductCart) { this.cantProductCart = cantProductCart; }
+
+    public void increaseCantProductCart(){
+        if (Integer.parseInt(this.stock) > this.cantProductCart){
+            this.cantProductCart++;
+        }
+    }
+
+    public void decreaseCantProductCart(){
+        if (this.cantProductCart>0){
+            this.cantProductCart--;
+        }
     }
 }
