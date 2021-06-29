@@ -16,10 +16,11 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-
     private List<Product> mData;
     private LayoutInflater mInflater;
     private Context context;
+    private View.OnClickListener listener;
+    Cart cart = new Cart();
 
     public ProductAdapter(List<Product> itemList, Context context){
         this.mInflater = LayoutInflater.from(context);
@@ -64,6 +65,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             stock.setText("Stock: " + item.getStock());
             category.setText("Categoria: " + item.getCategory());
             price.setText("Precio: " + item.getPrice());
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context.getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
+                    cart.addProduct(item);
+                }
+            });
         }
     }
 

@@ -38,14 +38,10 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Activity activity;
-    RecyclerView recyclerView;
-    EditText txtnombre;
-    View view;
-    public List<Product> listProduct = new ArrayList<Product>();
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    Cart cart;
+    ArrayList<Product> listProduct = new ArrayList<Product>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
                     Toast.makeText(HomeActivity.this,product.getName(),Toast.LENGTH_SHORT).show();
                 }
 
-
+                mostrarData();
             }
             @Override
             public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
@@ -124,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void mostrarData() {
         ProductAdapter productAdapter = new ProductAdapter(listProduct, this);
-        RecyclerView recyclerView = view.findViewById(R.id.listProduct);
+        RecyclerView recyclerView = findViewById(R.id.listProduct);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(productAdapter);
