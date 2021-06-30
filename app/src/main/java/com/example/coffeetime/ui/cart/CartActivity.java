@@ -6,11 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -33,16 +31,12 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
         recyclerView = findViewById(R.id.listProduct);
         tv_igv = findViewById(R.id.montoIGV);
         tv_subTotal = findViewById(R.id.precioSubtotal);
         tv_total =findViewById(R.id.montoTotal);
         button = findViewById(R.id.btn_Start);
-        lCart = new LCart(this, recyclerView, tv_subTotal, tv_igv, tv_total);
-        tv_subTotal.setText("S/"+ lCart.subTotal());
-        tv_igv.setText("S/"+ lCart.igv());
-        tv_total.setText("S/"+ lCart.Total());
+        lCart = new LCart(this, recyclerView, new TextView[]{tv_subTotal, tv_igv, tv_total});
     }
 
     @Override

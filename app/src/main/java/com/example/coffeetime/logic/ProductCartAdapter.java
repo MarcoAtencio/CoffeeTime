@@ -28,17 +28,14 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     private LayoutInflater mInflater;
     private Context context;
     private View.OnClickListener listener;
-    TextView tv_subTotal,tv_igv,tv_total;
+    TextView [] textViewForProductCart;
     LCart lCart = new LCart();
 
-    public ProductCartAdapter(List<Product> itemList, Context context, TextView tv_subTotal_, TextView tv_igv_, TextView tv_total_ ){
+    public ProductCartAdapter(List<Product> itemList, Context context, TextView[]textViewForProductCar_ ){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
-        tv_subTotal = tv_subTotal_;
-        tv_igv = tv_igv_;
-        tv_total = tv_total_;
-
+        textViewForProductCart = textViewForProductCar_;
     }
 
     @Override
@@ -60,9 +57,9 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     public void setItem(List<Product> items){ mData = items; }
 
     public void updateFieldToCart(){
-        tv_subTotal.setText("S/"+ lCart.subTotal());
-        tv_igv.setText("S/"+ lCart.igv());
-        tv_total.setText("S/"+ lCart.Total());
+        textViewForProductCart[0].setText("S/"+ lCart.subTotal());
+        textViewForProductCart[1].setText("S/"+ lCart.igv());
+        textViewForProductCart[2].setText("S/"+ lCart.Total());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

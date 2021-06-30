@@ -17,18 +17,16 @@ public class LCart {
     public static ArrayList<Product> cart = new ArrayList<Product>();
     Context context;
     RecyclerView recyclerView;
-    TextView tv_subTotal,tv_igv,tv_total;
+    TextView [] textViewForProductCart;
 
     public LCart(){
 
     }
 
-    public LCart(Context context_, RecyclerView recyclerView_,TextView tv_subTotal_, TextView tv_igv_, TextView tv_total_){
+    public LCart(Context context_, RecyclerView recyclerView_,TextView [] textViewForProductCart_){
         context = context_;
         recyclerView = recyclerView_;
-        tv_subTotal = tv_subTotal_;
-        tv_igv = tv_igv_;
-        tv_total = tv_total_;
+        textViewForProductCart = textViewForProductCart_;
         showDataToRecyclerView();
     }
 
@@ -51,7 +49,7 @@ public class LCart {
     }
 
     private void showDataToRecyclerView() {
-        ProductCartAdapter productCartAdapter = new ProductCartAdapter(cart, context,tv_subTotal,tv_igv,tv_total);
+        ProductCartAdapter productCartAdapter = new ProductCartAdapter(cart, context,textViewForProductCart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(productCartAdapter);

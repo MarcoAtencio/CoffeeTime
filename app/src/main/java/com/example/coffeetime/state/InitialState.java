@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.coffeetime.logic.LProduct;
 import com.example.coffeetime.model.Product;
+import com.example.coffeetime.model.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
