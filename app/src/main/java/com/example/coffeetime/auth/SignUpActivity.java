@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.UUID;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText et_email, et_password;
+    EditText et_email, et_password, et_name, et_lastName, et_phone, et_dateBirth;
     private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -36,6 +36,10 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         et_email  = (EditText) findViewById(R.id.txtUser);
         et_password = (EditText) findViewById(R.id.txtpassword);
+        et_name = (EditText) findViewById(R.id.id_Name);
+        et_lastName = (EditText) findViewById(R.id.id_lastName);
+        et_phone = (EditText) findViewById(R.id.id_phone);
+        et_dateBirth = (EditText) findViewById(R.id.id_dateBirth);
         initFirebase();
     }
 
@@ -48,6 +52,10 @@ public class SignUpActivity extends AppCompatActivity {
     public void registerUser(View view){
         String email = et_email.getText().toString().trim();
         String password = et_password.getText().toString().trim();
+        String name = et_name.getText().toString().trim();
+        String lastName = et_lastName.getText().toString().trim();
+        String phone = et_phone.getText().toString().trim();
+        String dateBirth = et_dateBirth.getText().toString().trim();
         User user = new User();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -75,6 +83,10 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 });
         user.setUid(UUID.randomUUID().toString());
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setPhone(phone);
+        user.setDateBirth(dateBirth);
         user.setEmail(email);
         databaseReference.child("User").child(user.getUid()).setValue(user);
 

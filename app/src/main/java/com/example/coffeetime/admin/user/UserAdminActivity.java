@@ -94,12 +94,14 @@ public class UserAdminActivity extends AppCompatActivity {
 
 
     public void findUser(View view){
-        /*
 
-        String uid = et_uid.getText().toString();
+        String email = et_email.getText().toString();
+
+        //String uid = .getText().toString();
         User user= new User();
-        user.setUid(uid);
-        databaseReference.child("User").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+        user.setEmail(email);
+        //user.setUid();
+        databaseReference.child("User").equalTo(user.getEmail()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
@@ -118,7 +120,7 @@ public class UserAdminActivity extends AppCompatActivity {
 
             }
         });
- */
+
 
     }
 
