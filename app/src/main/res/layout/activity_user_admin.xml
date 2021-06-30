@@ -27,7 +27,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Código"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
     <EditText
         android:id="@+id/txt_name"
         android:layout_width="match_parent"
@@ -38,16 +38,24 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/txt_apellido"
+        android:id="@+id/txt_lastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Apellido"
-        android:inputType="number" />
+        android:inputType="text" />
+    <EditText
+        android:id="@+id/txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/txt_telefono"
+        android:id="@+id/txt_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -56,7 +64,7 @@
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/txt_FechaNacimiento"
+        android:id="@+id/txt_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

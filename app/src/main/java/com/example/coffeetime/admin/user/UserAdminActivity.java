@@ -18,6 +18,7 @@ import com.example.coffeetime.admin.product.ProductAdminActivity;
 import com.example.coffeetime.admin.sales.SalesActivity;
 import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.model.Product;
+import com.example.coffeetime.model.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,9 +27,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
+import java.util.UUID;
+
 public class UserAdminActivity extends AppCompatActivity {
 
-    EditText et_codigo, et_name, et_price, et_stock, et_category, et_photo_url;
+    EditText  et_name, et_lastName, et_email, et_phone, et_date;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -36,13 +39,11 @@ public class UserAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_admin);
-        setContentView(R.layout.activity_product_admin);
-        et_codigo = (EditText) findViewById(R.id.idproduct_);
-        et_name = (EditText) findViewById(R.id.product_);
-        et_stock = (EditText) findViewById(R.id.stock_);
-        et_category = (EditText) findViewById(R.id.category_);
-        et_price = (EditText) findViewById(R.id.priceProducto_);
-        et_photo_url = (EditText) findViewById(R.id.url_);
+        et_name = (EditText) findViewById(R.id.txt_name);
+        et_lastName = (EditText) findViewById(R.id.txt_lastName);
+        et_email = (EditText) findViewById(R.id.txt_email);
+        et_phone = (EditText) findViewById(R.id.txt_phone);
+        et_date = (EditText) findViewById(R.id.txt_date);
         initFirebase();
     }
     @Override
@@ -90,44 +91,25 @@ public class UserAdminActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
     }
 
-    public void saveProduct(View view){
-        if (fieldValidate() == 1){
-            String uid = et_codigo.getText().toString();
-            String name = et_name.getText().toString();
-            String price =  et_price.getText().toString();
-            String stock = et_stock.getText().toString();
-            String category = et_category.getText().toString();
-            String photoUrl = et_photo_url.getText().toString();
 
-            Product product = new Product();
-            product.setUid(uid);
-            product.setName(name);
-            product.setPrice(price);
-            product.setStock(stock);
-            product.setPhotoURI(photoUrl);
-            product.setCategory(category);
-            databaseReference.child("Product").child(product.getUid()).setValue(product);
-            Toast.makeText(this,"Se registro exitosamente",Toast.LENGTH_SHORT).show();
-            fieldReset();
-        }
-    }
 
-    public void findProduct(View view){
+    public void findUser(View view){
+        /*
 
-        String uid = et_codigo.getText().toString();
-        Product product = new Product();
-        product.setUid(uid);
-        databaseReference.child("Product").child(product.getUid()).addValueEventListener(new ValueEventListener() {
+        String uid = et_uid.getText().toString();
+        User user= new User();
+        user.setUid(uid);
+        databaseReference.child("User").child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    Product product = snapshot.getValue(Product.class);
-                    et_codigo.setText(product.getUid());
-                    et_name.setText(product.getName());
-                    et_price.setText(product.getPrice());
-                    et_stock.setText(product.getStock());
-                    et_category.setText(product.getCategory());
-                    et_photo_url.setText(product.getPhotoURI());
+                    User user = snapshot.getValue(User.class);
+
+                    et_name.setText(user.getName());
+                    et_lastName.setText(user.getLastName());
+                    et_email.setText(user.getEmail());
+                    et_phone.setText(user.getPhone());
+                    et_date.setText(user.getDateBirth());
                 }
             }
 
@@ -136,46 +118,54 @@ public class UserAdminActivity extends AppCompatActivity {
 
             }
         });
-
+ */
 
     }
 
-    public void modifyProduct(View view){
+    public void modifyUser(View view){
 
+        /*
         String uid = et_codigo.getText().toString();
         String name = et_name.getText().toString();
-        String price = et_price.getText().toString();
-        String stock = et_stock.getText().toString();
-        String category = et_category.getText().toString();
-        String photoUrl = et_photo_url.getText().toString();
-        Product product = new Product();
-        product.setUid(uid);
-        product.setName(name);
-        product.setPrice(price);
-        product.setStock(stock);
-        product.setCategory(category);
-        product.setPhotoURI(photoUrl);
-        databaseReference.child("Product").child(product.getUid()).setValue(product);
+        String lastName = et_lastName.getText().toString();
+        String email = et_email.getText().toString();
+        String phone = et_phone.getText().toString();
+        String dateBirth = et_date.getText().toString();
+
+        User user= new User();
+
+        user.setUid(uid);
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setDateBirth(dateBirth);
+        databaseReference.child("User").child(user.getUid()).setValue(user);
         Toast.makeText(this,"Se registro exitosamente",Toast.LENGTH_SHORT).show();
         fieldReset();
 
+         */
+
     }
 
-    public void deleteProduct(View view){
+    public void deleteUser(View view){
+        /*
 
         String uid = et_codigo.getText().toString();
-        Product product = new Product();
-        product.setUid(uid);
-        databaseReference.child("Product").child(product.getUid()).removeValue();
+        User user= new User();
+        user.setUid(uid);
+        databaseReference.child("User").child(user.getUid()).removeValue();
         Toast.makeText(this,"Se elimino exitosamente",Toast.LENGTH_SHORT).show();
         fieldReset();
+
+         */
     }
 
     public int fieldValidate(){
         String name = et_name.getText().toString();
-        String price = et_price.getText().toString();
+        String lastName = et_lastName.getText().toString();
 
-        if ( name.isEmpty() && price.isEmpty()){
+        if ( name.isEmpty() && lastName.isEmpty()){
             Toast.makeText(this,"Llene los campos",Toast.LENGTH_SHORT).show();
             return 0;
         }
@@ -183,11 +173,11 @@ public class UserAdminActivity extends AppCompatActivity {
     }
 
     public void fieldReset(){
-        et_codigo.setText("");
+
         et_name.setText("");
-        et_price.setText("");
-        et_category.setText("");
-        et_stock.setText("");
-        et_photo_url.setText("");
+        et_lastName.setText("");
+        et_email.setText("");
+        et_phone.setText("");
+        et_date.setText("");
     }
 }
