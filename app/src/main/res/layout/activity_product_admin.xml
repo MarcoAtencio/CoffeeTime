@@ -20,48 +20,56 @@
         android:fontFamily="@font/grotesk_medium"
 
         />
-
     <EditText
-        android:id="@+id/txt_name"
+        android:id="@+id/idproduct_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Código de Producto"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/product_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Producto"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/txt_category"
+        android:id="@+id/category_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Categoria"
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/txt_stock"
+        android:id="@+id/stock_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Stock"
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/txt_precio"
+        android:id="@+id/priceProducto_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Precio"
         android:inputType="numberDecimal" />
 
     <EditText
-        android:id="@+id/txt_photo_url"
+        android:id="@+id/url_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Url"
         android:inputType="text" />
@@ -69,61 +77,71 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
+
         <Button
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FCB302"
-            android:text="Registrar"
-            android:padding="10dp"
             android:layout_margin="8dp"
-            android:textColor="#0C1423"
-            android:textAllCaps="false"
-            android:textSize="16dp"
             android:layout_weight="1"
+            android:backgroundTint="#FCB302"
+            android:onClick="saveProduct"
+            android:padding="10dp"
+            android:text="Registrar"
+            android:textAllCaps="false"
+            android:textColor="#0C1423"
+            android:textSize="16dp"
             app:cornerRadius="20dp" />
+
         <Button
             android:id="@+id/btn_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FCB302"
-            android:text="Buscar"
-            android:padding="10dp"
             android:layout_margin="8dp"
-            android:textColor="#0C1423"
-            android:textAllCaps="false"
-            android:textSize="16dp"
             android:layout_weight="1"
+            android:backgroundTint="#FCB302"
+            android:onClick="findProduct"
+            android:padding="10dp"
+            android:text="Buscar"
+            android:textAllCaps="false"
+            android:textColor="#0C1423"
+            android:textSize="16dp"
             app:cornerRadius="20dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="modifyProduct">
+
         <Button
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FCB302"
-            android:text="Actualizar"
             android:layout_margin="8dp"
-            android:padding="10dp"
-            android:textColor="#0C1423"
-            android:textAllCaps="false"
-            android:textSize="16dp"
             android:layout_weight="1"
+            android:backgroundTint="#FCB302"
+            android:onClick="modifyProduct"
+            android:padding="10dp"
+            android:text="Actualizar"
+            android:textAllCaps="false"
+            android:textColor="#0C1423"
+            android:textSize="16dp"
             app:cornerRadius="20dp" />
+
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FCB302"
-            android:text="Eliminar"
-            android:padding="10dp"
             android:layout_margin="8dp"
-            android:textColor="#0C1423"
-            android:textAllCaps="false"
-            android:textSize="16dp"
             android:layout_weight="1"
+            android:backgroundTint="#FCB302"
+            android:onClick="deleteProduct"
+            android:padding="10dp"
+            android:text="Eliminar"
+            android:textAllCaps="false"
+            android:textColor="#0C1423"
+            android:textSize="16dp"
             app:cornerRadius="20dp" />
     </LinearLayout>
 

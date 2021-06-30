@@ -100,7 +100,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
         public void updateFieldsToProductCart(final Product item){
             name.setText(item.getName());
             price.setText("S/: " + item.getPrice());
-            cant.setText(""+item.getCantProductCart());
+            cant.setText(""+item.cantProduct());
             updateFieldToCart();
         }
     }
