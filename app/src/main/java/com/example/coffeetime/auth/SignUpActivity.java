@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.coffeetime.R;
-import com.example.coffeetime.model.Product;
 import com.example.coffeetime.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,20 +27,18 @@ import com.google.firebase.database.annotations.NotNull;
 import java.util.UUID;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText et_email, et_password, et_name, et_lastName, et_phone, et_dateBirth;
+    EditText et_code, et_email, et_password, et_name, et_lastName, et_phone, et_dateBirth;
     private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    long maxid = 0;
     User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
         mAuth = FirebaseAuth.getInstance();
-
+        et_code = (EditText) findViewById(R.id.id_code);
         et_email  = (EditText) findViewById(R.id.txtUser);
         et_password = (EditText) findViewById(R.id.txtpassword);
         et_name = (EditText) findViewById(R.id.id_Name);
@@ -49,21 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
         et_phone = (EditText) findViewById(R.id.id_phone);
         et_dateBirth = (EditText) findViewById(R.id.id_dateBirth);
         initFirebase();
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    maxid = (snapshot.getChildrenCount());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
-
-            }
-        });
-
 
     }
 
@@ -74,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void registerUser(View view){
-
+        String uid = et_code.getText().toString().trim();
         String email = et_email.getText().toString().trim();
         String password = et_password.getText().toString().trim();
         String name = et_name.getText().toString().trim();
@@ -86,8 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
-
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -113,15 +93,15 @@ public class SignUpActivity extends AppCompatActivity {
                         // ...
                     }
 
-
                 });
-        user.setUid(String.valueOf(maxid+1));
+        user.setUid(uid);
         user.setName(name);
         user.setLastName(lastName);
         user.setPhone(phone);
         user.setDateBirth(dateBirth);
         user.setEmail(email);
         databaseReference.child("User").child(user.getUid()).setValue(user);
+
 
     }
 }

@@ -20,6 +20,7 @@ import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.model.Product;
 import com.example.coffeetime.model.User;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +32,8 @@ import java.util.UUID;
 
 public class UserAdminActivity extends AppCompatActivity {
 
-    EditText  et_name, et_lastName, et_email, et_phone, et_date;
+    EditText  et_code, et_name, et_lastName, et_email, et_phone, et_date;
+    private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -39,11 +41,14 @@ public class UserAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_admin);
+        et_code = (EditText) findViewById(R.id.txt_code);
         et_name = (EditText) findViewById(R.id.txt_name);
         et_lastName = (EditText) findViewById(R.id.txt_lastName);
         et_email = (EditText) findViewById(R.id.txt_email);
         et_phone = (EditText) findViewById(R.id.txt_phone);
         et_date = (EditText) findViewById(R.id.txt_date);
+        mAuth = FirebaseAuth.getInstance();
+
         initFirebase();
     }
     @Override
@@ -89,24 +94,22 @@ public class UserAdminActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+        mAuth.getCurrentUser().getUid();
     }
 
 
 
     public void findUser(View view){
-/*
-        //String email = et_email.getText().toString();
 
-        //String uid = .getText().toString();
+        String uid = et_code.getText().toString();
         User user= new User();
-        //user.setEmail(email);
-        //user.setUid();
-        databaseReference.child("User").equalTo("marco_").addValueEventListener(new ValueEventListener() {
+        user.setUid(uid);
+        databaseReference.child("User").child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     User user = snapshot.getValue(User.class);
-
+                    et_code.setText(user.getUid());
                     et_name.setText(user.getName());
                     et_lastName.setText(user.getLastName());
                     et_email.setText(user.getEmail());
@@ -121,13 +124,13 @@ public class UserAdminActivity extends AppCompatActivity {
             }
         });
 
-*/
+
     }
 
     public void modifyUser(View view){
 
-        /*
-        String uid = et_codigo.getText().toString();
+
+        String uid = et_code.getText().toString();
         String name = et_name.getText().toString();
         String lastName = et_lastName.getText().toString();
         String email = et_email.getText().toString();
@@ -146,33 +149,22 @@ public class UserAdminActivity extends AppCompatActivity {
         Toast.makeText(this,"Se registro exitosamente",Toast.LENGTH_SHORT).show();
         fieldReset();
 
-         */
+
 
     }
 
     public void deleteUser(View view){
-        /*
 
-        String uid = et_codigo.getText().toString();
+
+        String uid = et_code.getText().toString();
         User user= new User();
         user.setUid(uid);
         databaseReference.child("User").child(user.getUid()).removeValue();
         Toast.makeText(this,"Se elimino exitosamente",Toast.LENGTH_SHORT).show();
         fieldReset();
 
-         */
     }
 
-    public int fieldValidate(){
-        String name = et_name.getText().toString();
-        String lastName = et_lastName.getText().toString();
-
-        if ( name.isEmpty() && lastName.isEmpty()){
-            Toast.makeText(this,"Llene los campos",Toast.LENGTH_SHORT).show();
-            return 0;
-        }
-        return 1;
-    }
 
     public void fieldReset(){
 

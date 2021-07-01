@@ -17,7 +17,7 @@ public class User {
         this.dateBirth = "";
     }
 
-    public User(String uid, String name, String lastName, String email, String phone, String dateBirth) {
+    public User(String uid ,String name, String lastName, String email, String phone, String dateBirth) {
         this.uid = uid;
         this.name = name;
         this.lastName = lastName;
@@ -26,6 +26,7 @@ public class User {
         this.dateBirth = dateBirth;
     }
 
+
     public String getUid() {
         return uid;
     }
@@ -33,6 +34,7 @@ public class User {
     public void setUid(String uid) {
         this.uid = uid;
     }
+
 
     public String getName() {
         return name;
