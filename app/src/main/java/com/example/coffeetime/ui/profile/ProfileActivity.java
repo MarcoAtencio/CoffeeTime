@@ -92,7 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
         mAuth.getCurrentUser().getUid();
     }
-
+/*
     public void upUser(View view){
 
         String uid = et_code.getText().toString();
@@ -121,5 +121,5 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
 }

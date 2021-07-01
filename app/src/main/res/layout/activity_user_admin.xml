@@ -82,15 +82,15 @@
             android:id="@+id/findUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
             android:backgroundTint="#FCB302"
             android:onClick="findUser"
-            android:text="Buscar"
             android:padding="10dp"
-            android:layout_margin="8dp"
-            android:textColor="#0C1423"
+            android:text="Buscar"
             android:textAllCaps="false"
+            android:textColor="#0C1423"
             android:textSize="16dp"
-            android:layout_weight="1"
             app:cornerRadius="20dp" />
     </LinearLayout>
     <LinearLayout
@@ -125,6 +125,8 @@
             android:layout_weight="1"
             app:cornerRadius="20dp" />
     </LinearLayout>
+
+
 
 
 </LinearLayout>

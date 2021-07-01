@@ -1,7 +1,6 @@
 package com.example.coffeetime.model;
 
 public class User {
-    String uid;
     String name;
     String lastName;
     String email;
@@ -9,7 +8,6 @@ public class User {
     String dateBirth;
 
     public User() {
-        this.uid = "";
         this.name = "";
         this.lastName = "";
         this.email = "";
@@ -17,22 +15,12 @@ public class User {
         this.dateBirth = "";
     }
 
-    public User(String uid ,String name, String lastName, String email, String phone, String dateBirth) {
-        this.uid = uid;
+    public User(String name, String lastName, String email, String phone, String dateBirth) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.dateBirth = dateBirth;
-    }
-
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
 

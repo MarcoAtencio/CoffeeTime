@@ -20,19 +20,7 @@
         android:textColor="@color/fontTitle"
         android:textSize="34dp"
         android:textStyle="bold" />
-    <EditText
-        android:id="@+id/id_code"
-        android:layout_width="match_parent"
-        android:paddingLeft="20dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/input_style"
-        android:ems="10"
-        android:fontFamily="sans-serif-light"
-        android:hint="Código"
-        android:inputType="number"
 
-        />
     <EditText
         android:id="@+id/id_Name"
         android:layout_width="match_parent"

@@ -23,14 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.UUID;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText et_code, et_email, et_password, et_name, et_lastName, et_phone, et_dateBirth;
+    EditText  et_email, et_password, et_name, et_lastName, et_phone, et_dateBirth;
     private FirebaseAuth mAuth;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    FirebaseFirestore firebaseFirestore;
     User user;
 
     @Override
@@ -38,31 +38,25 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
-        et_code = (EditText) findViewById(R.id.id_code);
         et_email  = (EditText) findViewById(R.id.txtUser);
         et_password = (EditText) findViewById(R.id.txtpassword);
         et_name = (EditText) findViewById(R.id.id_Name);
         et_lastName = (EditText) findViewById(R.id.id_lastName);
         et_phone = (EditText) findViewById(R.id.id_phone);
         et_dateBirth = (EditText) findViewById(R.id.id_dateBirth);
-        initFirebase();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
     }
 
-    private void initFirebase(){
-        FirebaseApp.initializeApp(this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
-    }
 
     public void registerUser(View view){
-        String uid = et_code.getText().toString().trim();
         String email = et_email.getText().toString().trim();
         String password = et_password.getText().toString().trim();
         String name = et_name.getText().toString().trim();
         String lastName = et_lastName.getText().toString().trim();
         String phone = et_phone.getText().toString().trim();
         String dateBirth = et_dateBirth.getText().toString().trim();
+
 
         user = new User();
 
@@ -94,14 +88,17 @@ public class SignUpActivity extends AppCompatActivity {
                     }
 
                 });
-        user.setUid(uid);
+
+
         user.setName(name);
         user.setLastName(lastName);
         user.setPhone(phone);
         user.setDateBirth(dateBirth);
         user.setEmail(email);
-        databaseReference.child("User").child(user.getUid()).setValue(user);
 
+        firebaseFirestore.collection("User").document(user.getEmail()).set(user);
 
     }
+
+
 }
