@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.coffeetime.R;
+import com.example.coffeetime.model.Product;
 import com.example.coffeetime.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,8 +18,12 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -27,6 +32,8 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    long maxid = 0;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         mAuth = FirebaseAuth.getInstance();
+
         et_email  = (EditText) findViewById(R.id.txtUser);
         et_password = (EditText) findViewById(R.id.txtpassword);
         et_name = (EditText) findViewById(R.id.id_Name);
@@ -41,6 +49,22 @@ public class SignUpActivity extends AppCompatActivity {
         et_phone = (EditText) findViewById(R.id.id_phone);
         et_dateBirth = (EditText) findViewById(R.id.id_dateBirth);
         initFirebase();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    maxid = (snapshot.getChildrenCount());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     private void initFirebase(){
@@ -50,17 +74,24 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void registerUser(View view){
+
         String email = et_email.getText().toString().trim();
         String password = et_password.getText().toString().trim();
         String name = et_name.getText().toString().trim();
         String lastName = et_lastName.getText().toString().trim();
         String phone = et_phone.getText().toString().trim();
         String dateBirth = et_dateBirth.getText().toString().trim();
-        User user = new User();
+
+        user = new User();
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(SignUpActivity.this,"Se a registrado exitosamente",Toast.LENGTH_SHORT).show();
@@ -81,8 +112,10 @@ public class SignUpActivity extends AppCompatActivity {
 
                         // ...
                     }
+
+
                 });
-        user.setUid(UUID.randomUUID().toString());
+        user.setUid(String.valueOf(maxid+1));
         user.setName(name);
         user.setLastName(lastName);
         user.setPhone(phone);
