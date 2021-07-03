@@ -10,14 +10,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.coffeetime.R;
+import com.example.coffeetime.admin.user.UserAdminActivity;
 import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.model.Product;
 import com.example.coffeetime.model.User;
 import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,25 +29,30 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import static com.example.coffeetime.state.InitialState.ownerUser;
 
 public class ProfileActivity extends AppCompatActivity {
-    EditText et_code, et_name, et_lastName, et_email, et_phone, et_date;
-    private FirebaseAuth mAuth;
+    EditText  et_name, et_lastName, et_phone, et_date;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    FirebaseFirestore firebaseFirestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        et_name = (EditText) findViewById(R.id.et_nameOwnUser);
+        et_lastName = (EditText) findViewById(R.id.et_lastNameOwnUser);
+        et_phone  = (EditText) findViewById(R.id.et_phoneOwnUser);
+        et_date = (EditText) findViewById(R.id.et_dateBirthOwnUser);
 
-        et_code = (EditText) findViewById(R.id.txt_code);
-        et_name = (EditText) findViewById(R.id.txt_name);
-        et_lastName = (EditText) findViewById(R.id.txt_lastName);
-        et_email = (EditText) findViewById(R.id.txt_email);
-        et_phone = (EditText) findViewById(R.id.txt_phone);
-        et_date = (EditText) findViewById(R.id.txt_date);
+        et_name.setText(ownerUser.getName());
+        et_lastName.setText(ownerUser.getLastName());
+        et_date.setText(ownerUser.getDateBirth());
+        et_phone.setText(ownerUser.getPhone());
         initFirebase();
-        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -90,36 +98,31 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
-        mAuth.getCurrentUser().getUid();
     }
-/*
-    public void upUser(View view){
 
-        String uid = et_code.getText().toString();
-        User user= new User();
-        user.setUid(uid);
+    public void updateProfile(View view){
 
 
-        databaseReference.child("User").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+        String name = et_name.getText().toString();
+        String lastName = et_lastName.getText().toString();
+        String phone = et_phone.getText().toString();
+        String dateBirth = et_date.getText().toString();
+        ownerUser.setName(name);
+        ownerUser.setLastName(lastName);
+        ownerUser.setPhone(phone);
+        ownerUser.setDateBirth(dateBirth);
 
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    User user = snapshot.getValue(User.class);
-                    et_code.setText(user.getUid());
-                    et_name.setText(user.getName());
-                    et_lastName.setText(user.getLastName());
-                    et_email.setText(user.getEmail());
-                    et_phone.setText(user.getPhone());
-                    et_date.setText(user.getDateBirth());
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
+        firebaseFirestore.collection("User").document(ownerUser.getEmail()).set(ownerUser)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(ProfileActivity.this,"updateProfile",Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
-*/
+
+
 }
+
+

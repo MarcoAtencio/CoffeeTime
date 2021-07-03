@@ -11,17 +11,24 @@ import android.widget.Toast;
 
 import com.example.coffeetime.R;
 import com.example.coffeetime.admin.WelcomeAdminActivity;
+import com.example.coffeetime.admin.user.UserAdminActivity;
+import com.example.coffeetime.model.User;
 import com.example.coffeetime.ui.WelcomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignInActivity extends AppCompatActivity {
 
     EditText et_email, et_password;
+
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,9 @@ public class SignInActivity extends AppCompatActivity {
                                 intent = new Intent(getApplication(), WelcomeAdminActivity.class);
                             }
                             else {
+
                                 intent = new Intent(getApplication(), WelcomeActivity.class);
+                                intent.putExtra("email",email);
                             }
                             startActivity(intent);
 
@@ -70,6 +79,7 @@ public class SignInActivity extends AppCompatActivity {
                     }
                 });
 
+
     }
 
 
@@ -79,4 +89,8 @@ public class SignInActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
+
+
+
+
 }

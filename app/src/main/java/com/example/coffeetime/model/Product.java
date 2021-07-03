@@ -2,7 +2,7 @@ package com.example.coffeetime.model;
 
 import java.io.Serializable;
 
-public class Product  implements Serializable {
+public class   Product  implements Serializable {
     String uid;
     String name;
     String price;

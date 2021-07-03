@@ -48,7 +48,6 @@ public class UserAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_admin);
-        et_code = (EditText) findViewById(R.id.txt_code);
         et_name = (EditText) findViewById(R.id.txt_name);
         et_lastName = (EditText) findViewById(R.id.txt_lastName);
         et_email = (EditText) findViewById(R.id.txt_email);
@@ -110,41 +109,22 @@ public class UserAdminActivity extends AppCompatActivity {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             if (documentSnapshot.exists()){
                                 et_name.setText(documentSnapshot.getString("name"));
+                                et_lastName.setText(documentSnapshot.getString("lastName"));
+                                et_phone.setText(documentSnapshot.getString("phone"));
+                                et_date.setText(documentSnapshot.getString("dateBirth"));
                                 
                                 Toast.makeText(UserAdminActivity.this,"exito",Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
-            /*
-              databaseReference.child("User").child(user.getUid()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                    if (snapshot.exists()){
-                        User user = snapshot.getValue(User.class);
-                        et_name.setText(user.getName());
-                        et_lastName.setText(user.getLastName());
-                        et_email.setText(user.getEmail());
-                        et_phone.setText(user.getPhone());
-                        et_date.setText(user.getDateBirth());
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                }
-            });
-             */
-
-
 
         }
 
-    /*
+
   public void modifyUser(View view){
 
 
-      String uid = et_code.getText().toString();
       String name = et_name.getText().toString();
       String lastName = et_lastName.getText().toString();
       String email = et_email.getText().toString();
@@ -158,27 +138,33 @@ public class UserAdminActivity extends AppCompatActivity {
       user.setEmail(email);
       user.setPhone(phone);
       user.setDateBirth(dateBirth);
-      databaseReference.child("User").child(user.getUid()).setValue(user);
-      Toast.makeText(this,"Se registro exitosamente",Toast.LENGTH_SHORT).show();
+      firebaseFirestore.collection("User").document(email).set(user)
+              .addOnSuccessListener(new OnSuccessListener<Void>() {
+                  @Override
+                  public void onSuccess(Void unused) {
+                      Toast.makeText(UserAdminActivity.this,"exito",Toast.LENGTH_SHORT).show();
+                  }
+              });
       fieldReset();
 
 
 
   }
 
-  public void deleteUser(View view){
+      /*
+      public void deleteUser(View view){
 
 
-      String uid = et_code.getText().toString();
-      User user= new User();
-      user.setUid(uid);
-      databaseReference.child("User").child(user.getUid()).removeValue();
-      Toast.makeText(this,"Se elimino exitosamente",Toast.LENGTH_SHORT).show();
-      fieldReset();
+          String uid = et_code.getText().toString();
+          User user= new User();
+          user.setUid(uid);
+          databaseReference.child("User").child(user.getUid()).removeValue();
+          Toast.makeText(this,"Se elimino exitosamente",Toast.LENGTH_SHORT).show();
+          fieldReset();
 
-  }
+      }
 
-*/
+    */
     public void fieldReset(){
 
         et_name.setText("");

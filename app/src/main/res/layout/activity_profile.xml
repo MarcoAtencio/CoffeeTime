@@ -31,7 +31,7 @@
         />
 
     <EditText
-        android:id="@+id/idNombre_"
+        android:id="@+id/et_nameOwnUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"
@@ -50,7 +50,7 @@
         android:textSize="16dp"
         />
     <EditText
-        android:id="@+id/idApellidos_"
+        android:id="@+id/et_lastNameOwnUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/grotesk_medium"
@@ -58,7 +58,7 @@
         android:hint="Atencio Maravi"
         />
     <TextView
-        android:id="@+id/txtEmail_"
+        android:id="@+id/txtPhone_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Telefono"
@@ -67,7 +67,7 @@
         android:textSize="16dp"
         />
     <EditText
-        android:id="@+id/idEmail_"
+        android:id="@+id/et_phoneOwnUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
@@ -88,7 +88,7 @@
         />
 
     <EditText
-        android:id="@+id/idDate_"
+        android:id="@+id/et_dateBirthOwnUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
@@ -105,7 +105,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/btn_round"
-        android:onClick="upUser"
+        android:onClick="updateProfile"
         android:text="Actualizar"
         android:textAllCaps="false"
         android:textColor="@color/fontPrimary"
