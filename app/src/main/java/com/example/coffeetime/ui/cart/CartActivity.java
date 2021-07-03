@@ -9,14 +9,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.coffeetime.R;
 import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.logic.LCart;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
+import com.example.coffeetime.ui.pay.payActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
 
 public class CartActivity extends AppCompatActivity {
@@ -74,5 +77,14 @@ public class CartActivity extends AppCompatActivity {
                 break;
         }
         return  super.onOptionsItemSelected(item);
+    }
+
+    public void payCart(View view){
+        if (!LCart.cart.isEmpty()){
+            Intent intent = new Intent(this, payActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Agregar productos al carrito", Toast.LENGTH_SHORT).show();
+        }
     }
 }

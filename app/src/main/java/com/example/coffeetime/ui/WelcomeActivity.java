@@ -27,6 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
         initialState = new InitialState(this);
         initialState.stateListProducts();
         initialState.stateUser(getIntent().getStringExtra("email"));
+        initialState.stateListOwnPurchase(getIntent().getStringExtra("email"));
 
     }
 

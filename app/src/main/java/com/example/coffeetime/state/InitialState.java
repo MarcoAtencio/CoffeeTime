@@ -7,9 +7,12 @@ import androidx.annotation.NonNull;
 
 import com.example.coffeetime.logic.LProduct;
 import com.example.coffeetime.model.Product;
+import com.example.coffeetime.model.Sale;
 import com.example.coffeetime.model.User;
 import com.example.coffeetime.ui.WelcomeActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,8 +21,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 import static com.example.coffeetime.logic.LProduct.listProduct;
+import static com.example.coffeetime.logic.LSale.listOwnPurchase;
 
 public class InitialState {
     FirebaseDatabase firebaseDatabase;
@@ -57,6 +65,28 @@ public class InitialState {
         });
     }
 
+    public void stateListOwnPurchase(String email){
+
+        firebaseFirestore.collection("Sale").whereEqualTo("user", email).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(Task <QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            Sale sale = new Sale();
+                            for (QueryDocumentSnapshot queryDocumentSnapshot: task.getResult()){
+                                //sale.setState((boolean)queryDocumentSnapshot.getData().get("state"));
+                                sale.setUser(" " +queryDocumentSnapshot.getData().get("user"));
+                                //sale.setListProduct((ArrayList<Product>) queryDocumentSnapshot.getData().get("listProduct"));
+                                listOwnPurchase.add(sale);
+                                Toast.makeText(context,""+ queryDocumentSnapshot.getData().get("user") + queryDocumentSnapshot.getData().get("amountTotal"),Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }
+                });
+
+    }
+
     public void stateUser(String email){
 
         ownerUser = new User();
@@ -71,7 +101,7 @@ public class InitialState {
                             ownerUser.setDateBirth(documentSnapshot.getString("dateBirth"));
                             ownerUser.setPhone(documentSnapshot.getString("phone"));
 
-                            Toast.makeText(context,"ownerUser",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context,"ownerUser",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

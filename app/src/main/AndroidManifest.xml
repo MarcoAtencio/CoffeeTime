@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeTime">
-        <activity android:name=".ui.product.ProductActivity"></activity>
+        <activity android:name=".ui.pay.payActivity"></activity>
+        <activity android:name=".ui.product.ProductActivity" />
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.history.HistoryActivity" />
         <activity android:name=".ui.cart.CartActivity" />

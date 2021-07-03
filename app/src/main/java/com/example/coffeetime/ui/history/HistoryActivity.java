@@ -2,25 +2,32 @@ package com.example.coffeetime.ui.history;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.coffeetime.R;
 import com.example.coffeetime.auth.SignInActivity;
+import com.example.coffeetime.logic.LCart;
+import com.example.coffeetime.logic.LSale;
 import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
 
 public class HistoryActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
+    LSale lSale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        //lSale = new LSale( HistoryActivity.this, recyclerView);
     }
 
 
@@ -60,4 +67,6 @@ public class HistoryActivity extends AppCompatActivity {
         }
         return  super.onOptionsItemSelected(item);
     }
+
+
 }
