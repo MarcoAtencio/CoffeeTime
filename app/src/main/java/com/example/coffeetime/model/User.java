@@ -1,11 +1,18 @@
 package com.example.coffeetime.model;
 
+import com.example.coffeetime.common.Constants;
+
+import static com.example.coffeetime.common.Constants.DEFAULT_PROFILE;
+import static com.example.coffeetime.common.Constants.DEFAULT_QR;
+
 public class User {
     String name;
     String lastName;
     String email;
     String phone;
     String dateBirth;
+    String photoUri;
+    String qrUser;
 
     public User() {
         this.name = "";
@@ -13,14 +20,18 @@ public class User {
         this.email = "";
         this.phone = "";
         this.dateBirth = "";
+        this.photoUri = DEFAULT_PROFILE;
+        this.qrUser = DEFAULT_QR;
     }
 
-    public User(String name, String lastName, String email, String phone, String dateBirth) {
+    public User(String name, String lastName, String email, String phone, String dateBirth, String photoUri, String qrUser) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.dateBirth = dateBirth;
+        this.photoUri = photoUri;
+        this.qrUser = qrUser;
     }
 
 
@@ -30,6 +41,22 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhotoUri() {
+        return photoUri;
+    }
+
+    public String getQrUser() {
+        return qrUser;
+    }
+
+    public void setQrUser(String qrUser) {
+        this.qrUser = qrUser;
+    }
+
+    public void setPhotoUri(String photoUri) {
+        this.photoUri = photoUri;
     }
 
     public String getLastName() {
