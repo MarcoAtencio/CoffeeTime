@@ -2,6 +2,8 @@ package com.example.coffeetime.ui.history;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.coffeetime.R;
@@ -20,29 +23,37 @@ import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
 
+import static com.example.coffeetime.common.Functions.closeDrawer;
+import static com.example.coffeetime.common.Functions.logout;
+import static com.example.coffeetime.common.Functions.openDrawer;
+import static com.example.coffeetime.common.Functions.redirectActivity;
+
 public class HistoryActivity extends AppCompatActivity {
 
     RecyclerView rv_listOwnPurchase;
     public LSale lSale;
+    DrawerLayout drawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         rv_listOwnPurchase = findViewById(R.id.listhistory);
-        lSale = new LSale( HistoryActivity.this, rv_listOwnPurchase);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        lSale = new LSale(HistoryActivity.this, rv_listOwnPurchase);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return  super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_home:
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
@@ -71,7 +82,43 @@ public class HistoryActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
-        return  super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void ClickMenu(View view) {
+        openDrawer(drawerLayout);
+    }
+
+    public void ClickLogo(View view) {
+        redirectActivity(this, UserQRActivity.class);
+    }
+
+
+    public void ClickHome(View view) {
+        redirectActivity(this, HomeActivity.class);
+    }
+
+    public void ClickCart(View view) {
+        redirectActivity(this, CartActivity.class);
+    }
+
+
+    public void ClickHistory(View view) {
+        closeDrawer(drawerLayout);
+    }
+
+    public void ClickProfile(View view) {
+        redirectActivity(this, ProfileActivity.class);
+    }
+
+    public void ClickLogout(View view) {
+        logout(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        closeDrawer(drawerLayout);
     }
 
 }

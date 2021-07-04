@@ -2,6 +2,8 @@ package com.example.coffeetime.ui.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,14 +34,19 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import static com.example.coffeetime.common.Functions.closeDrawer;
+import static com.example.coffeetime.common.Functions.logout;
+import static com.example.coffeetime.common.Functions.openDrawer;
+import static com.example.coffeetime.common.Functions.redirectActivity;
 import static com.example.coffeetime.state.InitialState.ownerUser;
 
 public class ProfileActivity extends AppCompatActivity {
-    EditText  et_name, et_lastName, et_phone, et_date;
+    EditText et_name, et_lastName, et_phone, et_date;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseFirestore firebaseFirestore;
-    String name,lastName,phone,dateBirth;
+    String name, lastName, phone, dateBirth;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +55,9 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         et_name = (EditText) findViewById(R.id.et_nameOwnUser);
         et_lastName = (EditText) findViewById(R.id.et_lastNameOwnUser);
-        et_phone  = (EditText) findViewById(R.id.et_phoneOwnUser);
+        et_phone = (EditText) findViewById(R.id.et_phoneOwnUser);
         et_date = (EditText) findViewById(R.id.et_dateBirthOwnUser);
-
+        drawerLayout = findViewById(R.id.drawer_layout);
         et_name.setText(ownerUser.getName());
         et_lastName.setText(ownerUser.getLastName());
         et_date.setText(ownerUser.getDateBirth());
@@ -63,14 +70,14 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return  super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_home:
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
@@ -91,23 +98,23 @@ public class ProfileActivity extends AppCompatActivity {
                 break;
 
             case R.id.menu_profile:
-                return  true;
+                return true;
 
             case R.id.menu_logout:
                 intent = new Intent(this, SignInActivity.class);
                 startActivity(intent);
                 break;
         }
-        return  super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
-    private void initFirebase(){
+    private void initFirebase() {
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
 
-    public void updateProfile(View view){
+    public void updateProfile(View view) {
         name = et_name.getText().toString();
         lastName = et_lastName.getText().toString();
         phone = et_phone.getText().toString();
@@ -121,9 +128,47 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ProfileActivity.this,"updateProfile",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "updateProfile", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+
+    public void ClickMenu(View view) {
+        openDrawer(drawerLayout);
+    }
+
+
+    public void ClickLogo(View view) {
+        redirectActivity(this, UserQRActivity.class);
+    }
+
+
+    public void ClickHome(View view) {
+        redirectActivity(this, HomeActivity.class);
+    }
+
+    public void ClickCart(View view) {
+        redirectActivity(this, CartActivity.class);
+    }
+
+
+    public void ClickHistory(View view) {
+        redirectActivity(this, HistoryActivity.class);
+    }
+
+    public void ClickProfile(View view) {
+        closeDrawer(drawerLayout);
+    }
+
+    public void ClickLogout(View view) {
+        logout(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        closeDrawer(drawerLayout);
     }
 
 

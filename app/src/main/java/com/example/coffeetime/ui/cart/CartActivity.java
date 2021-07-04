@@ -2,6 +2,8 @@ package com.example.coffeetime.ui.cart;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -23,12 +25,18 @@ import com.example.coffeetime.ui.home.HomeActivity;
 import com.example.coffeetime.ui.pay.PayActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
 
+import static com.example.coffeetime.common.Functions.closeDrawer;
+import static com.example.coffeetime.common.Functions.logout;
+import static com.example.coffeetime.common.Functions.openDrawer;
+import static com.example.coffeetime.common.Functions.redirectActivity;
+
 public class CartActivity extends AppCompatActivity {
 
     TextView tv_subTotal, tv_igv, tv_total, tv_message;
     Button button;
     LCart lCart;
     RecyclerView rv_listCart;
+    DrawerLayout drawerLayout;
 
 
     @Override
@@ -41,6 +49,7 @@ public class CartActivity extends AppCompatActivity {
         tv_total = findViewById(R.id.montoTotal);
         tv_message = findViewById(R.id.txtMessage);
         button = findViewById(R.id.btn_Start);
+        drawerLayout = findViewById(R.id.drawer_layout);
         lCart = new LCart(this, rv_listCart, new TextView[]{tv_subTotal, tv_igv, tv_total});
 
         if (!LCart.cart.isEmpty()) {
@@ -98,5 +107,42 @@ public class CartActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Agregar productos al carrito", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void ClickMenu(View view) {
+        openDrawer(drawerLayout);
+    }
+
+
+    public void ClickLogo(View view) {
+        redirectActivity(this, UserQRActivity.class);
+    }
+
+
+    public void ClickHome(View view) {
+        redirectActivity(this, HomeActivity.class);
+    }
+
+    public void ClickCart(View view) {
+       closeDrawer(drawerLayout);
+    }
+
+
+    public void ClickHistory(View view) {
+        redirectActivity(this, HistoryActivity.class);
+    }
+
+    public void ClickProfile(View view) {
+        redirectActivity(this, ProfileActivity.class);
+    }
+
+    public void ClickLogout(View view) {
+        logout(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        closeDrawer(drawerLayout);
     }
 }
