@@ -5,9 +5,29 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
     android:paddingTop="20dp"
     android:paddingRight="30dp"
     android:paddingLeft="30dp"
-    tools:context=".admin.home.HomeAdminActivity"
->
+    tools:context=".admin.home.HomeAdminActivity" >
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginTop="170dp"
+        android:src="@drawable/ic_splashscreen" />
+
+    <TextView
+        android:id="@+id/tv_welcomeUser"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/grotesk_medium"
+        android:text="@string/txtAdmin"
+        android:textAlignment="center"
+        android:textColor="@color/fontTitle"
+        android:textSize="24sp"
+        />
+
 </LinearLayout>

@@ -70,7 +70,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
             codeSale.setText("N°. Pedido : " + item.getUid());
             //dateSale.setText(item.getD);
             totalSale.setText("Total: " + item.getAmountTotal());
-            Toast.makeText(context, item.getUid, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, item.getUid(), Toast.LENGTH_SHORT).show();
 
         }
     }
