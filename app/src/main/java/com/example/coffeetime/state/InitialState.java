@@ -100,6 +100,8 @@ public class InitialState {
                             ownerUser.setLastName(documentSnapshot.getString("lastName"));
                             ownerUser.setDateBirth(documentSnapshot.getString("dateBirth"));
                             ownerUser.setPhone(documentSnapshot.getString("phone"));
+                            ownerUser.setPhotoUri(documentSnapshot.getString("photoUri"));
+                            ownerUser.setQrUser(documentSnapshot.getString("qrUser"));
                             //Toast.makeText(context,"ownerUser",Toast.LENGTH_SHORT).show();
                         }
                     }
