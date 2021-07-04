@@ -1,11 +1,15 @@
 package com.example.coffeetime.logic;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.coffeetime.R;
 import com.example.coffeetime.model.Sale;
 
@@ -54,8 +58,20 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
         }
 
         public void bindData(final Sale item) {
-            codeSale.setText("N° Pedido" + item.getState());
-            totalSale.setText("Total" + item.getAmountTotal());
+
+            if (item.getState()) {
+
+                dateSale.setTextColor(Color.parseColor("#FF5733"));
+            } else {
+                dateSale.setTextColor(Color.parseColor("#FFC733"));
+
+            }
+            dateSale.setText("Estado :" + item.getState());
+            codeSale.setText("N°. Pedido : " + item.getUid());
+            //dateSale.setText(item.getD);
+            totalSale.setText("Total: " + item.getAmountTotal());
+            Toast.makeText(context, item.getUid, Toast.LENGTH_SHORT).show();
+
         }
     }
 }
