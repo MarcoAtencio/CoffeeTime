@@ -31,6 +31,16 @@
         android:textSize="48sp"
         android:textStyle="bold"
     />
+    <TextView
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/grotesk_medium"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:text="Agregar productos al carrito"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listProduct"
         android:layout_width="match_parent"
@@ -67,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textAlignment="textEnd"
-            android:text="S/.40.87"
+            android:text="S/.0"
             android:textColor="#0C1423"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -98,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textAlignment="textEnd"
-            android:text="S/.6.87"
+            android:text="S/.0"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_weight="1"
@@ -128,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="S/.40.87"
+            android:text="S/.0"
             android:textAlignment="textEnd"
             android:textColor="#0C1423"
             android:textSize="20sp"

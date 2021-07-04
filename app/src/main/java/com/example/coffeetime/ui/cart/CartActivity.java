@@ -25,7 +25,7 @@ import com.example.coffeetime.ui.profile.ProfileActivity;
 
 public class CartActivity extends AppCompatActivity {
 
-    TextView tv_subTotal, tv_igv, tv_total;
+    TextView tv_subTotal, tv_igv, tv_total, tv_message;
     Button button;
     LCart lCart;
     RecyclerView rv_listCart;
@@ -39,8 +39,15 @@ public class CartActivity extends AppCompatActivity {
         tv_igv = findViewById(R.id.montoIGV);
         tv_subTotal = findViewById(R.id.precioSubtotal);
         tv_total = findViewById(R.id.montoTotal);
+        tv_message = findViewById(R.id.txtMessage);
         button = findViewById(R.id.btn_Start);
         lCart = new LCart(this, rv_listCart, new TextView[]{tv_subTotal, tv_igv, tv_total});
+
+        if (!LCart.cart.isEmpty()) {
+            tv_message.setVisibility(View.GONE);
+        } else {
+            tv_message.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
