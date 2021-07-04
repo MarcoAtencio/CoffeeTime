@@ -38,6 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseFirestore firebaseFirestore;
+    String name,lastName,phone,dateBirth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,17 +103,14 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void updateProfile(View view){
-
-
-        String name = et_name.getText().toString();
-        String lastName = et_lastName.getText().toString();
-        String phone = et_phone.getText().toString();
-        String dateBirth = et_date.getText().toString();
+        name = et_name.getText().toString();
+        lastName = et_lastName.getText().toString();
+        phone = et_phone.getText().toString();
+        dateBirth = et_date.getText().toString();
         ownerUser.setName(name);
         ownerUser.setLastName(lastName);
         ownerUser.setPhone(phone);
         ownerUser.setDateBirth(dateBirth);
-
 
         firebaseFirestore.collection("User").document(ownerUser.getEmail()).set(ownerUser)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -19,19 +19,22 @@ import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
 
+import static com.example.coffeetime.common.Constants.DESSERT;
+import static com.example.coffeetime.common.Constants.DISH;
+import static com.example.coffeetime.common.Constants.DRINK;
+import static com.example.coffeetime.common.Constants.STARTER_PLATE;
+
 public class HomeActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
+    RecyclerView rv_listProduct;
     LProduct lProducts;
-    Integer categoryProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        recyclerView = findViewById(R.id.listProduct_);
+        rv_listProduct = findViewById(R.id.listProduct_);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,40 +69,24 @@ public class HomeActivity extends AppCompatActivity {
                 intent = new Intent(this, SignInActivity.class);
                 startActivity(intent);
                 break;
-
-
         }
         return  super.onOptionsItemSelected(item);
     }
 
-       /*
-    StarterPlate =1
-    dish = 2
-    drinks = 3
-    desserts = 4
-     */
-    public void ShowStarterPlate(View view){
-        Toast.makeText(HomeActivity.this,"StarterPlate",Toast.LENGTH_SHORT).show();
-        categoryProduct = 1;
-        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    public void showStarterPlate(View view){
+        lProducts= new LProduct(HomeActivity.this, rv_listProduct,STARTER_PLATE);
     }
 
-    public void ShowDish(View view){
-        Toast.makeText(HomeActivity.this,"Dish",Toast.LENGTH_SHORT).show();
-        categoryProduct = 2;
-        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    public void showDish(View view){
+        lProducts= new LProduct(HomeActivity.this, rv_listProduct,DISH);
     }
 
-    public void ShowDrinks(View view){
-        Toast.makeText(this,"Drinks",Toast.LENGTH_SHORT).show();
-        categoryProduct = 3;
-        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    public void showDrinks(View view){
+        lProducts= new LProduct(HomeActivity.this, rv_listProduct,DRINK);
     }
 
-    public void ShowDesserts(View view){
-        Toast.makeText(this,"Desserts",Toast.LENGTH_SHORT).show();
-        categoryProduct = 4;
-        lProducts= new LProduct(HomeActivity.this, recyclerView,categoryProduct);
+    public void showDesserts(View view){
+        lProducts= new LProduct(HomeActivity.this, rv_listProduct,DESSERT);
     }
 
 }

@@ -22,7 +22,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private List<Product> mData;
     private LayoutInflater mInflater;
     private Context context;
-    private View.OnClickListener listener;
 
     public ProductAdapter(List<Product> itemList, Context context ){
         this.mInflater = LayoutInflater.from(context);

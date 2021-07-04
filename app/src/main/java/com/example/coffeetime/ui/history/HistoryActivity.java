@@ -21,13 +21,14 @@ import com.example.coffeetime.ui.profile.ProfileActivity;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    LSale lSale;
+    RecyclerView rv_listOwnPurchase;
+    public LSale lSale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        //lSale = new LSale( HistoryActivity.this, recyclerView);
+        rv_listOwnPurchase = findViewById(R.id.listhistory);
+        lSale = new LSale( HistoryActivity.this, rv_listOwnPurchase);
     }
 
 

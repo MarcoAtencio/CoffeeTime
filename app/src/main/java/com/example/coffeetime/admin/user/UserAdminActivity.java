@@ -41,8 +41,9 @@ import java.util.UUID;
 
 public class UserAdminActivity extends AppCompatActivity {
 
-    EditText  et_code, et_name, et_lastName, et_email, et_phone, et_date;
+    EditText et_name, et_lastName, et_email, et_phone, et_date;
     FirebaseFirestore firebaseFirestore;
+    String name, lastName, email, phone, dateBirth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +57,18 @@ public class UserAdminActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
-        return  super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.menu_admin, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.menu_home:
                 intent = new Intent(this, HomeAdminActivity.class);
@@ -91,82 +93,75 @@ public class UserAdminActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
-        return  super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
 
+    public void findUser(View view) {
 
+        email = et_email.getText().toString();
+        User user = new User();
+        Toast.makeText(UserAdminActivity.this, email, Toast.LENGTH_SHORT).show();
+        firebaseFirestore.collection("User").document(email).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            et_name.setText(documentSnapshot.getString("name"));
+                            et_lastName.setText(documentSnapshot.getString("lastName"));
+                            et_phone.setText(documentSnapshot.getString("phone"));
+                            et_date.setText(documentSnapshot.getString("dateBirth"));
 
-
-        public void findUser(View view){
-
-            String email = et_email.getText().toString();
-            User user= new User();
-            Toast.makeText(UserAdminActivity.this,email,Toast.LENGTH_SHORT).show();
-            firebaseFirestore.collection("User").document(email).get()
-                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            if (documentSnapshot.exists()){
-                                et_name.setText(documentSnapshot.getString("name"));
-                                et_lastName.setText(documentSnapshot.getString("lastName"));
-                                et_phone.setText(documentSnapshot.getString("phone"));
-                                et_date.setText(documentSnapshot.getString("dateBirth"));
-                                
-                                Toast.makeText(UserAdminActivity.this,"exito",Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(UserAdminActivity.this, "exito", Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    }
+                });
 
 
-        }
+    }
 
 
-  public void modifyUser(View view){
+    public void modifyUser(View view) {
 
 
-      String name = et_name.getText().toString();
-      String lastName = et_lastName.getText().toString();
-      String email = et_email.getText().toString();
-      String phone = et_phone.getText().toString();
-      String dateBirth = et_date.getText().toString();
-
-      User user= new User();
-
-      user.setName(name);
-      user.setLastName(lastName);
-      user.setEmail(email);
-      user.setPhone(phone);
-      user.setDateBirth(dateBirth);
-      firebaseFirestore.collection("User").document(email).set(user)
-              .addOnSuccessListener(new OnSuccessListener<Void>() {
-                  @Override
-                  public void onSuccess(Void unused) {
-                      Toast.makeText(UserAdminActivity.this,"exito",Toast.LENGTH_SHORT).show();
-                  }
-              });
-      fieldReset();
+        name = et_name.getText().toString();
+        lastName = et_lastName.getText().toString();
+        email = et_email.getText().toString();
+        phone = et_phone.getText().toString();
+        dateBirth = et_date.getText().toString();
+        User user = new User();
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setDateBirth(dateBirth);
+        firebaseFirestore.collection("User").document(email).set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(UserAdminActivity.this, "exito", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        fieldReset();
 
 
+    }
 
-  }
-
-      /*
-      public void deleteUser(View view){
+    /*
+    public void deleteUser(View view){
 
 
-          String uid = et_code.getText().toString();
-          User user= new User();
-          user.setUid(uid);
-          databaseReference.child("User").child(user.getUid()).removeValue();
-          Toast.makeText(this,"Se elimino exitosamente",Toast.LENGTH_SHORT).show();
-          fieldReset();
+        String uid = et_code.getText().toString();
+        User user= new User();
+        user.setUid(uid);
+        databaseReference.child("User").child(user.getUid()).removeValue();
+        Toast.makeText(this,"Se elimino exitosamente",Toast.LENGTH_SHORT).show();
+        fieldReset();
 
-      }
+    }
 
-    */
-    public void fieldReset(){
-
+  */
+    public void fieldReset() {
         et_name.setText("");
         et_lastName.setText("");
         et_email.setText("");

@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SignInActivity extends AppCompatActivity {
 
     EditText et_email, et_password;
-
+    String email,password;
     private FirebaseAuth mAuth;
 
 
@@ -36,61 +36,55 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         mAuth = FirebaseAuth.getInstance();
-        et_email  = (EditText) findViewById(R.id.inputUser);
+        et_email = (EditText) findViewById(R.id.inputUser);
         et_password = (EditText) findViewById(R.id.idPwd);
     }
 
 
-    public void login(View view){
-        String email = et_email.getText().toString().trim();
-        String password = et_password.getText().toString().trim();
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(SignInActivity.this,email,Toast.LENGTH_SHORT).show();
-                            Intent intent;
-                            if(email.equals("marco1@hotmail.com")){
-                                intent = new Intent(getApplication(), WelcomeAdminActivity.class);
-                            }
-                            else {
+    public void login(View view) {
+        email = et_email.getText().toString().trim();
+        password = et_password.getText().toString().trim();
+        if (fieldsNotEmpty()) {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(SignInActivity.this, email, Toast.LENGTH_SHORT).show();
+                                Intent intent;
+                                if (email.equals("marco1@hotmail.com")) {
+                                    intent = new Intent(getApplication(), WelcomeAdminActivity.class);
+                                } else {
 
-                                intent = new Intent(getApplication(), WelcomeActivity.class);
-                                intent.putExtra("email",email);
-                            }
-                            startActivity(intent);
+                                    intent = new Intent(getApplication(), WelcomeActivity.class);
+                                    intent.putExtra("email", email);
+                                }
+                                startActivity(intent);
 
-                        } else {
-
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException){
+                            } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(SignInActivity.this,"Ya esta registrado este usuario",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this, "Ingreso los incorrectos", Toast.LENGTH_SHORT).show();
                             }
-                            else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(SignInActivity.this,"Ocurrio algo en el proceso",Toast.LENGTH_SHORT).show();
-                            }
-
                         }
+                    });
 
-                        // ...
-                    }
-                });
-
+        } else {
+            Toast.makeText(SignInActivity.this, "Ingrese los datos", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
 
-
-    public void  registerUser(View view){
-
+    public void registerUser(View view) {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 
-
-
+    public boolean fieldsNotEmpty() {
+        email = et_email.getText().toString().trim();
+        password = et_password.getText().toString().trim();
+        return !email.isEmpty() && !password.isEmpty();
+    }
 
 }

@@ -16,7 +16,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        TimerTask tarea = new TimerTask() {
+        TimerTask task= new TimerTask() {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashScreenActivity.this, SignInActivity.class);
@@ -24,7 +24,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             }
         };
-        Timer tiempo = new Timer();
-        tiempo.schedule(tarea,3000);
+        Timer time = new Timer();
+        time.schedule(task,3000);
     }
 }

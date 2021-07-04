@@ -19,40 +19,40 @@ import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.logic.LCart;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
-import com.example.coffeetime.ui.pay.payActivity;
+import com.example.coffeetime.ui.pay.PayActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
 
 public class CartActivity extends AppCompatActivity {
 
-    TextView tv_subTotal,tv_igv,tv_total;
+    TextView tv_subTotal, tv_igv, tv_total;
     Button button;
     LCart lCart;
-    RecyclerView recyclerView;
+    RecyclerView rv_listCart;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        recyclerView = findViewById(R.id.listProduct);
+        rv_listCart = findViewById(R.id.listProduct);
         tv_igv = findViewById(R.id.montoIGV);
         tv_subTotal = findViewById(R.id.precioSubtotal);
-        tv_total =findViewById(R.id.montoTotal);
+        tv_total = findViewById(R.id.montoTotal);
         button = findViewById(R.id.btn_Start);
-        lCart = new LCart(this, recyclerView, new TextView[]{tv_subTotal, tv_igv, tv_total});
+        lCart = new LCart(this, rv_listCart, new TextView[]{tv_subTotal, tv_igv, tv_total});
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return  super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_home:
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
@@ -76,14 +76,14 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
-        return  super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
-    public void payCart(View view){
-        if (!LCart.cart.isEmpty()){
-            Intent intent = new Intent(this, payActivity.class);
+    public void payCart(View view) {
+        if (!LCart.cart.isEmpty()) {
+            Intent intent = new Intent(this, PayActivity.class);
             startActivity(intent);
-        }else{
+        } else {
             Toast.makeText(this, "Agregar productos al carrito", Toast.LENGTH_SHORT).show();
         }
     }

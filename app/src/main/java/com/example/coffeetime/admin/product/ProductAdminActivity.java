@@ -17,6 +17,7 @@ import com.example.coffeetime.admin.home.HomeAdminActivity;
 import com.example.coffeetime.admin.sales.SalesActivity;
 import com.example.coffeetime.admin.user.UserAdminActivity;
 import com.example.coffeetime.auth.SignInActivity;
+import com.example.coffeetime.auth.SignUpActivity;
 import com.example.coffeetime.model.Product;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -30,34 +31,36 @@ import java.util.UUID;
 
 public class ProductAdminActivity extends AppCompatActivity {
 
-    EditText et_codigo, et_name, et_price, et_stock, et_category, et_photo_url;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    EditText et_uid, et_name, et_price, et_stock, et_category, et_photoUri;
+    String uid, name, price, stock, category, photoUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_admin);
-        et_codigo = (EditText) findViewById(R.id.idproduct_);
+        et_uid = (EditText) findViewById(R.id.idproduct_);
         et_name = (EditText) findViewById(R.id.product_);
         et_stock = (EditText) findViewById(R.id.stock_);
         et_category = (EditText) findViewById(R.id.category_);
         et_price = (EditText) findViewById(R.id.priceProducto_);
-        et_photo_url = (EditText) findViewById(R.id.url_);
+        et_photoUri = (EditText) findViewById(R.id.url_);
         initFirebase();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
-        return  super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.menu_admin, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent;
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.menu_home:
                 intent = new Intent(this, HomeAdminActivity.class);
@@ -82,53 +85,55 @@ public class ProductAdminActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
-        return  super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
-    private void initFirebase(){
+    private void initFirebase() {
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
 
-    public void saveProduct(View view){
-        if (fieldValidate() == 1){
-            String uid = et_codigo.getText().toString();
-            String name = et_name.getText().toString();
-            String price =  et_price.getText().toString();
-            String stock = et_stock.getText().toString();
-            String category = et_category.getText().toString();
-            String photoUrl = et_photo_url.getText().toString();
+    public void saveProduct(View view) {
+        if (fieldsNotEmpty()) {
+            uid = et_uid.getText().toString();
+            name = et_name.getText().toString();
+            price = et_price.getText().toString();
+            stock = et_stock.getText().toString();
+            category = et_category.getText().toString();
+            photoUri = et_photoUri.getText().toString();
 
             Product product = new Product();
             product.setUid(uid);
             product.setName(name);
             product.setPrice(price);
             product.setStock(stock);
-            product.setPhotoURI(photoUrl);
+            product.setPhotoURI(photoUri);
             product.setCategory(category);
             databaseReference.child("Product").child(product.getUid()).setValue(product);
-            Toast.makeText(this,"Se registro exitosamente",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Se registro exitosamente", Toast.LENGTH_SHORT).show();
             fieldReset();
+        } else {
+            Toast.makeText(this, "Ingrese los datos", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void findProduct(View view){
+    public void findProduct(View view) {
 
-        String uid = et_codigo.getText().toString();
+        String uid = et_uid.getText().toString();
         Product product = new Product();
         product.setUid(uid);
         databaseReference.child("Product").child(product.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     Product product = snapshot.getValue(Product.class);
-                    et_codigo.setText(product.getUid());
+                    et_uid.setText(product.getUid());
                     et_name.setText(product.getName());
                     et_price.setText(product.getPrice());
                     et_stock.setText(product.getStock());
                     et_category.setText(product.getCategory());
-                    et_photo_url.setText(product.getPhotoURI());
+                    et_photoUri.setText(product.getPhotoURI());
                 }
             }
 
@@ -141,14 +146,14 @@ public class ProductAdminActivity extends AppCompatActivity {
 
     }
 
-    public void modifyProduct(View view){
+    public void modifyProduct(View view) {
 
-        String uid = et_codigo.getText().toString();
+        String uid = et_uid.getText().toString();
         String name = et_name.getText().toString();
         String price = et_price.getText().toString();
         String stock = et_stock.getText().toString();
         String category = et_category.getText().toString();
-        String photoUrl = et_photo_url.getText().toString();
+        String photoUrl = et_photoUri.getText().toString();
         Product product = new Product();
         product.setUid(uid);
         product.setName(name);
@@ -157,38 +162,43 @@ public class ProductAdminActivity extends AppCompatActivity {
         product.setCategory(category);
         product.setPhotoURI(photoUrl);
         databaseReference.child("Product").child(product.getUid()).setValue(product);
-        Toast.makeText(this,"Se registro exitosamente",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Se modifico exitosamente", Toast.LENGTH_SHORT).show();
         fieldReset();
 
     }
 
-    public void deleteProduct(View view){
+    public void deleteProduct(View view) {
 
-        String uid = et_codigo.getText().toString();
-        Product product = new Product();
-        product.setUid(uid);
-        databaseReference.child("Product").child(product.getUid()).removeValue();
-        Toast.makeText(this,"Se elimino exitosamente",Toast.LENGTH_SHORT).show();
-        fieldReset();
-    }
-
-    public int fieldValidate(){
-        String name = et_name.getText().toString();
-        String price = et_price.getText().toString();
-
-        if ( name.isEmpty() && price.isEmpty()){
-            Toast.makeText(this,"Llene los campos",Toast.LENGTH_SHORT).show();
-            return 0;
+        String uid = et_uid.getText().toString();
+        if (!uid.isEmpty()){
+            Product product = new Product();
+            product.setUid(uid);
+            databaseReference.child("Product").child(product.getUid()).removeValue();
+            Toast.makeText(this, "Se elimino exitosamente", Toast.LENGTH_SHORT).show();
+            fieldReset();
         }
-        return 1;
+
+        else {
+            Toast.makeText(this, "Ingrese el id del producto", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void fieldReset(){
-        et_codigo.setText("");
+    public boolean fieldsNotEmpty() {
+        uid = et_uid.getText().toString();
+        name = et_name.getText().toString();
+        price = et_price.getText().toString();
+        stock = et_stock.getText().toString();
+        category = et_category.getText().toString();
+        photoUri = et_photoUri.getText().toString();
+        return !name.isEmpty() && !price.isEmpty() && !price.isEmpty() && !stock.isEmpty() && !category.isEmpty() && !photoUri.isEmpty();
+    }
+
+    public void fieldReset() {
+        et_uid.setText("");
         et_name.setText("");
         et_price.setText("");
         et_category.setText("");
         et_stock.setText("");
-        et_photo_url.setText("");
+        et_photoUri.setText("");
     }
 }

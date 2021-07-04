@@ -2,6 +2,8 @@ package com.example.coffeetime.model;
 
 import java.util.ArrayList;
 
+import static com.example.coffeetime.common.Constants.STATE_PENDING;
+
 public class Sale {
     String uid;
     ArrayList<Product> listProduct;
@@ -10,6 +12,11 @@ public class Sale {
     String amountTotal;
 
     public Sale() {
+        this.uid = "";
+        this.user = "";
+        this.state = STATE_PENDING;
+        this.listProduct = new ArrayList<Product>();
+        this.amountTotal = "";
     }
 
     public Sale(String uid, ArrayList<Product> listProduct, String amountTotal, boolean state ,String user) {
@@ -24,13 +31,14 @@ public class Sale {
         return uid;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
     }
 
     public void setState(boolean state) {
         this.state = state;
     }
+
 
     public String getUser() {
         return user;

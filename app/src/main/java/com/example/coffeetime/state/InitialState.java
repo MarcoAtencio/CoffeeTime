@@ -37,24 +37,24 @@ public class InitialState {
     Context context;
 
 
-    public InitialState(Context context_){
+    public InitialState(Context context_) {
         context = context_;
         initFirebase(context);
     }
 
-    private void initFirebase(Context context){
+    private void initFirebase(Context context) {
         FirebaseApp.initializeApp(context);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
-    public void stateListProducts(){
+    public void stateListProducts() {
         databaseReference.child("Product").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
                 listProduct.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Product product = dataSnapshot.getValue(Product.class);
                     listProduct.add(product);
                 }
@@ -65,20 +65,21 @@ public class InitialState {
         });
     }
 
-    public void stateListOwnPurchase(String email){
-
+    public void stateListOwnPurchase(String email) {
+        listOwnPurchase.clear();
         firebaseFirestore.collection("Sale").whereEqualTo("user", email).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(Task <QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            Sale sale = new Sale();
-                            for (QueryDocumentSnapshot queryDocumentSnapshot: task.getResult()){
-                                //sale.setState((boolean)queryDocumentSnapshot.getData().get("state"));
-                                sale.setUser(" " +queryDocumentSnapshot.getData().get("user"));
-                                //sale.setListProduct((ArrayList<Product>) queryDocumentSnapshot.getData().get("listProduct"));
+                    public void onComplete(Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                                Sale sale = new Sale();
+                                sale.setState((boolean) queryDocumentSnapshot.getData().get("state"));
+                                sale.setUser(queryDocumentSnapshot.getData().get("user").toString());
+                                sale.setAmountTotal(queryDocumentSnapshot.getData().get("amountTotal").toString());
+                                sale.setListProduct((ArrayList<Product>) queryDocumentSnapshot.getData().get("listProduct"));
                                 listOwnPurchase.add(sale);
-                                Toast.makeText(context,""+ queryDocumentSnapshot.getData().get("user") + queryDocumentSnapshot.getData().get("amountTotal"),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "" + queryDocumentSnapshot.getData().get("user") + queryDocumentSnapshot.getData().get("amountTotal"), Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -87,25 +88,21 @@ public class InitialState {
 
     }
 
-    public void stateUser(String email){
-
+    public void stateUser(String email) {
         ownerUser = new User();
         firebaseFirestore.collection("User").document(email).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()){
+                        if (documentSnapshot.exists()) {
                             ownerUser.setEmail(documentSnapshot.getString("email"));
                             ownerUser.setName(documentSnapshot.getString("name"));
                             ownerUser.setLastName(documentSnapshot.getString("lastName"));
                             ownerUser.setDateBirth(documentSnapshot.getString("dateBirth"));
                             ownerUser.setPhone(documentSnapshot.getString("phone"));
-
                             //Toast.makeText(context,"ownerUser",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
-
     }
 }

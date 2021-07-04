@@ -1,16 +1,13 @@
 package com.example.coffeetime.logic;
 
 import android.content.Context;
-import android.media.Image;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,17 +18,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.example.coffeetime.logic.LCart.cart;
 
 public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.ViewHolder> {
     private List<Product> mData;
     private LayoutInflater mInflater;
     private Context context;
-    private View.OnClickListener listener;
-    TextView [] textViewForProductCart;
+    TextView[] textViewForProductCart;
     LCart lCart = new LCart();
 
-    public ProductCartAdapter(List<Product> itemList, Context context, TextView[]textViewForProductCar_ ){
+    public ProductCartAdapter(List<Product> itemList, Context context, TextView[] textViewForProductCar_) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -39,35 +34,37 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     }
 
     @Override
-    public int getItemCount(){ return mData.size();}
+    public int getItemCount() {
+        return mData.size();
+    }
 
     @Override
-    public ProductCartAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-
+    public ProductCartAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.product_cart_element, null);
-
         return new ProductCartAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ProductCartAdapter.ViewHolder holder, final int position){
+    public void onBindViewHolder(final ProductCartAdapter.ViewHolder holder, final int position) {
         holder.bindData(mData.get(position));
     }
 
-    public void setItem(List<Product> items){ mData = items; }
+    public void setItem(List<Product> items) {
+        mData = items;
+    }
 
-    public void updateFieldToCart(){
-        textViewForProductCart[0].setText("S/"+ lCart.subTotal());
-        textViewForProductCart[1].setText("S/"+ lCart.igv());
-        textViewForProductCart[2].setText("S/"+ lCart.Total());
+    public void updateFieldToCart() {
+        textViewForProductCart[0].setText("S/" + lCart.subTotal());
+        textViewForProductCart[1].setText("S/" + lCart.igv());
+        textViewForProductCart[2].setText("S/" + lCart.Total());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage;
         TextView name, price, cant;
-        ImageButton decreaseCant,increaseCant;
+        ImageButton decreaseCant, increaseCant;
 
-        ViewHolder(View itemView){
+        ViewHolder(View itemView) {
             super(itemView);
             iconImage = itemView.findViewById(R.id.productImgCart);
             name = itemView.findViewById(R.id.productNameCart);
@@ -77,7 +74,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
             increaseCant = itemView.findViewById(R.id.productIncreaseCantCart);
         }
 
-        public void bindData(final Product item){
+        public void bindData(final Product item) {
             Picasso.get().load(item.getPhotoURI()).into(iconImage);
             updateFieldsToProductCart(item);
             decreaseCant.setOnClickListener(new View.OnClickListener() {
@@ -97,10 +94,10 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
             });
         }
 
-        public void updateFieldsToProductCart(final Product item){
+        public void updateFieldsToProductCart(final Product item) {
             name.setText(item.getName());
             price.setText("S/: " + item.getPrice());
-            cant.setText(""+item.cantProduct());
+            cant.setText("" + item.cantProduct());
             updateFieldToCart();
         }
     }

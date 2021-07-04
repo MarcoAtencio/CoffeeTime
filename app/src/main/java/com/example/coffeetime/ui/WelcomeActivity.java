@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeetime.R;
@@ -18,16 +19,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class WelcomeActivity extends AppCompatActivity {
     InitialState initialState;
-
+    TextView tv_welcomeUser;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        email = getIntent().getStringExtra("email");
+        tv_welcomeUser = findViewById(R.id.tv_welcomeUser);
+        //tv_welcomeUser.setText("Bienvenido "+email+"a Coffee Time");
         initialState = new InitialState(this);
         initialState.stateListProducts();
-        initialState.stateUser(getIntent().getStringExtra("email"));
-        initialState.stateListOwnPurchase(getIntent().getStringExtra("email"));
+        initialState.stateUser(email);
+        initialState.stateListOwnPurchase(email);
 
     }
 

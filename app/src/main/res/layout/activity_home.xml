@@ -31,8 +31,6 @@
         >
 
 
-
-
         <Button
             android:id="@+id/btnMenu2"
             android:layout_width="77dp"
@@ -41,7 +39,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/menu1"
             android:drawableTop="@drawable/ic_burger"
-            android:onClick="ShowStarterPlate"
+            android:onClick="showStarterPlate"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="@string/txtMenu2"
@@ -60,7 +58,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/menu1"
             android:drawableTop="@drawable/ic_breakfast"
-            android:onClick="ShowDish"
+            android:onClick="showDish"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="@string/txtMenu1"
@@ -80,7 +78,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/menu1"
             android:drawableTop="@drawable/ic_postre"
-            android:onClick="ShowDesserts"
+            android:onClick="showDesserts"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="@string/txtMenu3"
@@ -99,7 +97,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/menu1"
             android:drawableTop="@drawable/ic_flat"
-            android:onClick="ShowDrinks"
+            android:onClick="showDrinks"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="@string/txtMenu4"

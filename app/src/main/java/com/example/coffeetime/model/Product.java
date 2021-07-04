@@ -18,7 +18,6 @@ public class   Product  implements Serializable {
         this.category = "";
         this.photoURI = "";
         this.stock = "";
-
     }
 
     public Product(String uid, String name, String price, String category, String photoURI, String stock) {
