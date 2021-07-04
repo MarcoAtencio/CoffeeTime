@@ -15,6 +15,7 @@ import com.example.coffeetime.R;
 import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.logic.LCart;
 import com.example.coffeetime.logic.LSale;
+import com.example.coffeetime.ui.UserQR.UserQRActivity;
 import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
@@ -30,7 +31,6 @@ public class HistoryActivity extends AppCompatActivity {
         rv_listOwnPurchase = findViewById(R.id.listhistory);
         lSale = new LSale( HistoryActivity.this, rv_listOwnPurchase);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,6 +61,11 @@ public class HistoryActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
 
+            case R.id.menu_QR:
+                intent = new Intent(this, UserQRActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.menu_logout:
                 intent = new Intent(this, SignInActivity.class);
                 startActivity(intent);
@@ -68,6 +73,5 @@ public class HistoryActivity extends AppCompatActivity {
         }
         return  super.onOptionsItemSelected(item);
     }
-
 
 }

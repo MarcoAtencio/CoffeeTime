@@ -14,6 +14,7 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="primary">#FCB302</color>
+    <color name="primary1">#FC9D02</color>
     <color name="secondary">#F43127</color>
     <color name="fontPrimary">#0C1423</color>
     <color name="fontSecondary">#858990</color>

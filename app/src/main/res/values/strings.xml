@@ -30,11 +30,14 @@
     <string name="btnPagar">Pagar</string>
     <string name="btnPaypal">Pagar con Paypal</string>
     <string name="btnRegistrar">Registrar</string>
+
     <!--Inputs-->
     <string name="emailHint">Usuario o Correo electrónico</string>
     <string name="passwordHint">Contraseña</string>
+
     <!--MainActivity2-->
-    <string name="txtTitle">Bienvido a CoffeeTime</string>
+    <string name="txtTitle">Bienvenido a CoffeeTime</string>
+    <string name="txtAdmin">Bienvenido al área administrativa</string>
     <string name="txtParagraph">Nunca es tarde para tomarse un cafe</string>
     <string name="txtTitleAdmin">Sesión Administrador</string>
     <string name="txtParagraphAdmin">Es momento  de inspeccionar nuestros productos</string>
@@ -42,10 +45,9 @@
     <string name="txtParagraph2">Porciones  3</string>
     <string name="btnSignUp">Sign Up</string>
     <string name="txtLogInCheck">Already have an account ?</string>
+
     <!--MainActivity3-->
     <string name="txtTitleLogin">Welcome Back !</string>
-    <string name="btnFacebook">Continuar con facebook</string>
-    <string name="btnGoogle">Continuar con google</string>
     <string name="cornerBtn">38dp</string>
     <string name="txtLogin">Iniciar Sesión</string>
     <string name="btnIngresar">Ingresar</string>
@@ -53,6 +55,7 @@
     <string name="txtOlvidado">¿No cuenta con un correo?</string>
     <string name="titleSignUp">Registrar</string>
     <string name="txtContraseña">Contraseña</string>
+
     <!--Shopping Cart-->
     <string name="titleCart">Tu carrito</string>
     <string name="txtSubtotal">Subtotal</string>
@@ -79,5 +82,4 @@
     <string name="priceTotal">S/32.80</string>
     <string name="txtUsuario1">Marco Antonio Atencio Maravi</string>
     <string name="txtCodigoQr">Usa tu código QR para recoger tu pedido</string>
-
 </resources>
