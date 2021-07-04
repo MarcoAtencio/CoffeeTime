@@ -122,7 +122,7 @@ public class UserQRActivity extends AppCompatActivity {
         redirectActivity(this, ProfileActivity.class);
     }
 
-    public void ClickLogout(View view) {
+    public void ClickExit(View view) {
         logout(this);
     }
 
@@ -132,5 +132,8 @@ public class UserQRActivity extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
+    public void ClickLogout(View view) {
+        redirectActivity(this, SignInActivity.class);
+    }
 
 }

@@ -136,7 +136,7 @@ public class CartActivity extends AppCompatActivity {
         redirectActivity(this, ProfileActivity.class);
     }
 
-    public void ClickLogout(View view) {
+    public void ClickExit(View view) {
         logout(this);
     }
 
@@ -145,4 +145,9 @@ public class CartActivity extends AppCompatActivity {
         super.onPause();
         closeDrawer(drawerLayout);
     }
+
+    public void ClickLogout(View view) {
+        redirectActivity(this, SignInActivity.class);
+    }
+
 }

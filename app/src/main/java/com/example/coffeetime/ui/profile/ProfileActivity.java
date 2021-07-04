@@ -161,7 +161,7 @@ public class ProfileActivity extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
-    public void ClickLogout(View view) {
+    public void ClickExit(View view) {
         logout(this);
     }
 
@@ -171,6 +171,9 @@ public class ProfileActivity extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
+    public void ClickLogout(View view) {
+        redirectActivity(this, SignInActivity.class);
+    }
 
 }
 

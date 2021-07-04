@@ -53,6 +53,8 @@
     <string name="btnIngresar">Ingresar</string>
     <string name="txtUsuario">Usuario o Correo electronico</string>
     <string name="txtOlvidado">¿No cuenta con un correo?</string>
+    <string name="txtUsuarioBar">Nombre del Usuario</string>
+    <string name="txtCorreo">usuario@hotmail.com</string>
     <string name="titleSignUp">Registrar</string>
     <string name="txtContraseña">Contraseña</string>
 
@@ -61,7 +63,7 @@
     <string name="txtSubtotal">Subtotal</string>
     <string name="txtDescuento">Descuento</string>
     <string name="txtLaCarta">La Carta</string>
-    <string name="txtRecomendacionesparati">Recomendaciones para ti</string>
+    <string name="txtRecomendacionesparati">Nuestro Productos</string>
     <string name="txtMenu1">Menu</string>
     <string name="txtMenu2">Comida Rapida</string>
     <string name="txtMenu3">Postre</string>

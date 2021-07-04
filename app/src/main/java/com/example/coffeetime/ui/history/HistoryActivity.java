@@ -111,7 +111,7 @@ public class HistoryActivity extends AppCompatActivity {
         redirectActivity(this, ProfileActivity.class);
     }
 
-    public void ClickLogout(View view) {
+    public void ClickExit(View view) {
         logout(this);
     }
 
@@ -119,6 +119,10 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         closeDrawer(drawerLayout);
+    }
+
+    public void ClickLogout(View view) {
+        redirectActivity(this, SignInActivity.class);
     }
 
 }

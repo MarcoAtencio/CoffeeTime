@@ -134,7 +134,7 @@ public class HomeActivity extends AppCompatActivity {
         redirectActivity(this, ProfileActivity.class);
     }
 
-    public void ClickLogout(View view) {
+    public void ClickExit(View view) {
         logout(this);
     }
 
@@ -142,6 +142,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         closeDrawer(drawerLayout);
+    }
+
+    public void ClickLogout(View view) {
+        redirectActivity(this, SignInActivity.class);
     }
 
 }
