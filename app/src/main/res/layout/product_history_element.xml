@@ -1,53 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/cv" android:layout_width="match_parent" android:layout_height="wrap_content" android:animateLayoutChanges="true" app:cardCornerRadius="20dp" android:orientation="horizontal" app:cardElevation="4dp" app:cardUseCompatPadding="true">
-
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:orientation="vertical"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
+        android:padding="20dp"
         android:orientation="horizontal">
+
         <LinearLayout
-
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
+            android:padding="20dp"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/nPedido_"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="N° Pedido"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:padding="1dp"
+                >
 
-            <TextView
-                android:id="@+id/fechaPedido_"
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="0.1"
+                    android:text="N° Pedido"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nPedido_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:text="UID1213-12313"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:text="Fecha :"
-                android:textSize="19dp" />
+                android:padding="1dp"
+                >
 
-            <TextView
-                android:id="@+id/cantidad_"
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.1"
+                    android:text="Fecha :"
+                    android:textSize="19dp" />
+
+                <TextView
+                    android:id="@+id/fechaPedido_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:text="01/09/2021"
+                    android:textSize="19dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:text="Cantidad:"
-                android:textSize="19dp" />
+                android:padding="1dp"
+                >
 
-            <TextView
-                android:id="@+id/total_"
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.1"
+                    android:text="Cantidad:"
+                    android:textSize="19dp" />
+
+                <TextView
+                    android:id="@+id/cantidad_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:text="12"
+                    android:textSize="19dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:text="Total"
-                android:textSize="19dp" />
+                android:padding="1dp"
+                >
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.1"
+                    android:text="Total"
+                    android:textSize="19dp" />
+
+                <TextView
+                    android:id="@+id/total_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:text="S/.12.10"
+                    android:textSize="19dp" />
+            </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>

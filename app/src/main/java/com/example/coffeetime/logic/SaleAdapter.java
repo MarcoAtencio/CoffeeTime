@@ -66,11 +66,11 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
                 dateSale.setTextColor(Color.parseColor("#FFC733"));
 
             }
-            dateSale.setText("Estado :" + item.getState());
-            codeSale.setText("N°. Pedido : " + item.getUid());
+            dateSale.setText(" " +item.getState());
+            codeSale.setText(item.getUid());
             //dateSale.setText(item.getD);
-            totalSale.setText("Total: " + item.getAmountTotal());
-            Toast.makeText(context, item.getUid, Toast.LENGTH_SHORT).show();
+            totalSale.setText(item.getAmountTotal());
+            Toast.makeText(context, item.getUid(), Toast.LENGTH_SHORT).show();
 
         }
     }

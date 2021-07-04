@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/time"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/bg_color"
     android:orientation="vertical"
-    android:paddingTop="20dp"
     android:paddingLeft="20dp"
+    android:paddingTop="20dp"
     android:paddingRight="20dp"
     tools:context=".ui.home.HomeActivity">
 
@@ -16,9 +16,9 @@
         android:id="@+id/titleCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/grotesk_medium"
         android:text="@string/txtLaCarta"
-        android:layout_marginTop="12dp"
         android:textColor="@color/fontTitle"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -26,9 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="1dp"
         android:layout_marginTop="15dp"
-        >
+        android:padding="1dp">
 
 
         <Button
@@ -119,13 +118,15 @@
         android:text="@string/txtRecomendacionesparati"
         android:textColor="@color/fontTitle"
         android:textSize="14sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listProduct_"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listProduct_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
 
 </LinearLayout>
