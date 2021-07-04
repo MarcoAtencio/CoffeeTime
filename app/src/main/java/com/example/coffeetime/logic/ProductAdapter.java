@@ -63,7 +63,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public void bindData(final Product item){
             Picasso.get().load(item.getPhotoURI()).into(iconImage);
             name.setText(item.getName());
-            stock.setText("Stock: " + item.getStock());
+            stock.setText("Disponible: " + item.getStock());
             category.setText("Categoría: " + item.getCategory());
             price.setText("S/: " + item.getPrice());
             button.setOnClickListener(new View.OnClickListener() {
