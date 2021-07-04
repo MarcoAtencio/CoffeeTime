@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.coffeetime.R;
 import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.logic.LCart;
+import com.example.coffeetime.ui.UserQR.UserQRActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
 import com.example.coffeetime.ui.pay.PayActivity;
@@ -68,6 +69,10 @@ public class CartActivity extends AppCompatActivity {
 
             case R.id.menu_profile:
                 intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.menu_QR:
+                intent = new Intent(this, UserQRActivity.class);
                 startActivity(intent);
                 break;
 

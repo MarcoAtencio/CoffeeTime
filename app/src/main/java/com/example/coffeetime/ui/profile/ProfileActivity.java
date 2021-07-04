@@ -17,6 +17,7 @@ import com.example.coffeetime.admin.user.UserAdminActivity;
 import com.example.coffeetime.auth.SignInActivity;
 import com.example.coffeetime.model.Product;
 import com.example.coffeetime.model.User;
+import com.example.coffeetime.ui.UserQR.UserQRActivity;
 import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
@@ -82,6 +83,10 @@ public class ProfileActivity extends AppCompatActivity {
 
             case R.id.menu_history:
                 intent = new Intent(this, HistoryActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.menu_QR:
+                intent = new Intent(this, UserQRActivity.class);
                 startActivity(intent);
                 break;
 
