@@ -60,16 +60,19 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
         public void bindData(final Sale item) {
 
             if (item.getState()) {
+                dateSale.setText("Entregado");
+                dateSale.setTextColor(Color.parseColor("#59E325"));
 
-                dateSale.setTextColor(Color.parseColor("#FF5733"));
             } else {
-                dateSale.setTextColor(Color.parseColor("#FFC733"));
+                dateSale.setText("Pendiente");
+                dateSale.setTextColor(Color.parseColor("#FF0000"));
 
             }
-            dateSale.setText("" + item.getState());
+
+
             codeSale.setText(item.getUid());
             //dateSale.setText(item.getD);
-            totalSale.setText(item.getAmountTotal());
+            totalSale.setText("S/. " + item.getAmountTotal());
             Toast.makeText(context, item.getUid(), Toast.LENGTH_SHORT).show();
 
         }

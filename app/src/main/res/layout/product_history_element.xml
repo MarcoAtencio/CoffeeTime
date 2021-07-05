@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_weight="1"
-                    android:text="N° Pedido"
+                    android:text="N° Pedido :"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -42,6 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_weight="1"
+                    android:textAlignment="textEnd"
                     android:text="UID1213-12313"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -57,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:text="Fecha :"
+                    android:text="Estado :"
                     android:textSize="19dp" />
 
                 <TextView
@@ -66,6 +67,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="@font/grotesk_medium"
                     android:text="01/09/2021"
                     android:textSize="19dp" />
 
@@ -83,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:text="Cantidad:"
+                    android:text="Cantidad :"
                     android:textSize="19dp" />
 
                 <TextView
@@ -91,6 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
+                    android:textAlignment="textEnd"
                     android:layout_weight="1"
                     android:text="12"
                     android:textSize="19dp" />
@@ -109,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:text="Total"
+                    android:text="Total :"
                     android:textSize="19dp" />
 
                 <TextView
@@ -117,6 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
+                    android:textAlignment="textEnd"
                     android:layout_weight="1"
                     android:text="S/.12.10"
                     android:textSize="19dp" />

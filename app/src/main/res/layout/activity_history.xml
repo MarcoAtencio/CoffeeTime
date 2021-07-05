@@ -26,6 +26,7 @@
             android:textAlignment="center"
             android:textColor="@color/fontTitle"
             android:textSize="30sp"
+            android:layout_marginTop="20dp"
             android:textStyle="bold" />
 
         <LinearLayout
