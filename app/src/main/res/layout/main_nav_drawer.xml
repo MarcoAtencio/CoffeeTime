@@ -12,7 +12,8 @@
         android:background="@drawable/bg_color"
         android:orientation="vertical">
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="100dp"
@@ -20,8 +21,8 @@
             >
             <ImageView
                 android:id="@+id/drawerPhoto"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:onClick="ClickLogo"
                 android:src="@drawable/ic_coffetime" />
