@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeetime.R;
@@ -24,6 +26,7 @@ import com.example.coffeetime.ui.UserQR.UserQRActivity;
 import com.example.coffeetime.ui.cart.CartActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
+import com.squareup.picasso.Picasso;
 
 import static com.example.coffeetime.common.Constants.DESSERT;
 import static com.example.coffeetime.common.Constants.DISH;
@@ -33,12 +36,15 @@ import static com.example.coffeetime.common.Functions.closeDrawer;
 import static com.example.coffeetime.common.Functions.logout;
 import static com.example.coffeetime.common.Functions.openDrawer;
 import static com.example.coffeetime.common.Functions.redirectActivity;
+import static com.example.coffeetime.state.InitialState.ownerUser;
 
 public class HomeActivity extends AppCompatActivity {
 
     RecyclerView rv_listProduct;
     LProduct lProducts;
     DrawerLayout drawerLayout;
+    TextView d_id, d_email;
+    ImageView d_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,13 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         rv_listProduct = findViewById(R.id.listProduct_);
         drawerLayout = findViewById(R.id.drawer_layout);
+        d_id = findViewById(R.id.drawerId);
+        d_email = findViewById(R.id.drawerEmail);
+        d_photo = findViewById(R.id.drawerPhoto);
+
+        d_id.setText(ownerUser.getName());
+        d_email.setText(ownerUser.getEmail());
+        Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
     }
 
     @Override
