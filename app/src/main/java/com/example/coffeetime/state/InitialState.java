@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.Timestamp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -75,7 +77,8 @@ public class InitialState {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                                 Sale sale = new Sale();
-                                //sale.setDateSale((Date) queryDocumentSnapshot.getData().get("dateSale"));
+                                Timestamp timestamp = (Timestamp) queryDocumentSnapshot.getData().get("dateSale");
+                                sale.setDateSale(timestamp.toDate());
                                 sale.setUid(queryDocumentSnapshot.getData().get("uid").toString());
                                 sale.setState((boolean) queryDocumentSnapshot.getData().get("state"));
                                 sale.setUser(queryDocumentSnapshot.getData().get("user").toString());
@@ -83,7 +86,7 @@ public class InitialState {
                                 sale.setListProduct((ArrayList<Product>) queryDocumentSnapshot.getData().get("listProduct"));
                                 listOwnPurchase.add(sale);
 
-                                Toast.makeText(context, "" + queryDocumentSnapshot.getData().get("dateSale"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "" + timestamp.toDate(), Toast.LENGTH_LONG).show();
                             }
 
                         }

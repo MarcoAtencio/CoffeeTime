@@ -50,9 +50,9 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView codeSale, stateSale, amountSale, totalSale, dateSale;
-        String s ;
+        String s;
 
-                ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             codeSale = itemView.findViewById(R.id.nPedido_);
             stateSale = itemView.findViewById(R.id.stateSale_);
@@ -72,9 +72,9 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
                 stateSale.setTextColor(Color.parseColor("#FF0000"));
 
             }
-            //s = new SimpleDateFormat("yyyy-MM-dd").format(item.getDateSale());
+            s = new SimpleDateFormat("dd--MM--yyyy").format(item.getDateSale());
             codeSale.setText(item.getUid());
-            //dateSale.setText("" + s);
+            dateSale.setText(s);
             totalSale.setText("S/. " + item.getAmountTotal());
             Toast.makeText(context, item.getUid(), Toast.LENGTH_SHORT).show();
 
