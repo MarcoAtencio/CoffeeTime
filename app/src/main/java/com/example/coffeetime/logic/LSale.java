@@ -1,6 +1,7 @@
 package com.example.coffeetime.logic;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import com.example.coffeetime.model.Sale;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 import static com.example.coffeetime.logic.LCart.cart;
@@ -25,6 +27,7 @@ public class LSale {
     LCart lCart = new LCart();
 
 
+
     public LSale() {
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
@@ -37,7 +40,9 @@ public class LSale {
     }
 
     public void registerSale() {
+
         sale.setUid(UUID.randomUUID().toString());
+        sale.setDateSale(new Date());
         sale.setAmountTotal("" + lCart.Total());
         sale.setUser(ownerUser.getEmail());
         sale.setState(false);

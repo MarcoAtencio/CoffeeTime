@@ -2,6 +2,7 @@ package com.example.coffeetime.logic;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffeetime.R;
 import com.example.coffeetime.model.Sale;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
@@ -47,12 +49,14 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView codeSale, dateSale, amountSale, totalSale;
+        TextView codeSale, stateSale, amountSale, totalSale, dateSale;
+        String s ;
 
-        ViewHolder(View itemView) {
+                ViewHolder(View itemView) {
             super(itemView);
             codeSale = itemView.findViewById(R.id.nPedido_);
-            dateSale = itemView.findViewById(R.id.fechaPedido_);
+            stateSale = itemView.findViewById(R.id.stateSale_);
+            dateSale = itemView.findViewById(R.id.date_);
             amountSale = itemView.findViewById(R.id.cantidad_);
             totalSale = itemView.findViewById(R.id.total_);
         }
@@ -60,18 +64,17 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
         public void bindData(final Sale item) {
 
             if (item.getState()) {
-                dateSale.setText("Entregado");
-                dateSale.setTextColor(Color.parseColor("#59E325"));
+                stateSale.setText("Entregado");
+                stateSale.setTextColor(Color.parseColor("#59E325"));
 
             } else {
-                dateSale.setText("Pendiente");
-                dateSale.setTextColor(Color.parseColor("#FF0000"));
+                stateSale.setText("Pendiente");
+                stateSale.setTextColor(Color.parseColor("#FF0000"));
 
             }
-
-
+            //s = new SimpleDateFormat("yyyy-MM-dd").format(item.getDateSale());
             codeSale.setText(item.getUid());
-            //dateSale.setText(item.getD);
+            //dateSale.setText("" + s);
             totalSale.setText("S/. " + item.getAmountTotal());
             Toast.makeText(context, item.getUid(), Toast.LENGTH_SHORT).show();
 

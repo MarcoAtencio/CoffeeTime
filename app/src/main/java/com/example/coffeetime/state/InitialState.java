@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static com.example.coffeetime.logic.LProduct.listProduct;
 import static com.example.coffeetime.logic.LSale.listOwnPurchase;
@@ -74,12 +75,15 @@ public class InitialState {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                                 Sale sale = new Sale();
+                                //sale.setDateSale((Date) queryDocumentSnapshot.getData().get("dateSale"));
+                                sale.setUid(queryDocumentSnapshot.getData().get("uid").toString());
                                 sale.setState((boolean) queryDocumentSnapshot.getData().get("state"));
                                 sale.setUser(queryDocumentSnapshot.getData().get("user").toString());
                                 sale.setAmountTotal(queryDocumentSnapshot.getData().get("amountTotal").toString());
                                 sale.setListProduct((ArrayList<Product>) queryDocumentSnapshot.getData().get("listProduct"));
                                 listOwnPurchase.add(sale);
-                                Toast.makeText(context, "" + queryDocumentSnapshot.getData().get("user") + queryDocumentSnapshot.getData().get("amountTotal"), Toast.LENGTH_SHORT).show();
+
+                                Toast.makeText(context, "" + queryDocumentSnapshot.getData().get("dateSale"), Toast.LENGTH_SHORT).show();
                             }
 
                         }
