@@ -35,6 +35,7 @@ public class UserQRActivity extends AppCompatActivity {
     ImageView qr, profileQr;
     TextView nameQr;
     DrawerLayout drawerLayout;
+    ImageView d_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class UserQRActivity extends AppCompatActivity {
         profileQr = findViewById(R.id.profileQR_);
         nameQr = findViewById(R.id.txtNameQr_);
         drawerLayout = findViewById(R.id.drawer_layout);
+        d_photo = findViewById(R.id.drawerPhoto);
+        Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
         addImage();
     }
 

@@ -15,7 +15,9 @@
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.history.HistoryActivity" />
         <activity android:name=".ui.cart.CartActivity" />
-        <activity android:name=".admin.home.HomeAdminActivity" />
+        <activity android:name=".admin.home.HomeAdminActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+            />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".admin.WelcomeAdminActivity" />
         <activity android:name=".admin.user.UserAdminActivity" />

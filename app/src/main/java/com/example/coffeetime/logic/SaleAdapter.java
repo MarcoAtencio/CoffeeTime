@@ -73,7 +73,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
 
             }
             s = new SimpleDateFormat("dd--MM--yyyy").format(item.getDateSale());
-            codeSale.setText(item.getUid());
+            codeSale.setText(item.getUid().substring(0,8));
             dateSale.setText(s);
             totalSale.setText("S/. " + item.getAmountTotal());
             Toast.makeText(context, item.getUid(), Toast.LENGTH_SHORT).show();

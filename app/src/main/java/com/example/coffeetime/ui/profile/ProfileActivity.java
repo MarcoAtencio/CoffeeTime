@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.coffeetime.R;
@@ -33,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import static com.example.coffeetime.common.Functions.closeDrawer;
 import static com.example.coffeetime.common.Functions.logout;
@@ -47,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     String name, lastName, phone, dateBirth;
     DrawerLayout drawerLayout;
+    ImageView d_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,8 @@ public class ProfileActivity extends AppCompatActivity {
         et_lastName.setText(ownerUser.getLastName());
         et_date.setText(ownerUser.getDateBirth());
         et_phone.setText(ownerUser.getPhone());
+        d_photo = findViewById(R.id.drawerPhoto);
+        Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
         initFirebase();
 
     }

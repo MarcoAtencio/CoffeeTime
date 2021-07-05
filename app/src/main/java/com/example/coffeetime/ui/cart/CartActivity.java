@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +25,13 @@ import com.example.coffeetime.ui.history.HistoryActivity;
 import com.example.coffeetime.ui.home.HomeActivity;
 import com.example.coffeetime.ui.pay.PayActivity;
 import com.example.coffeetime.ui.profile.ProfileActivity;
+import com.squareup.picasso.Picasso;
 
 import static com.example.coffeetime.common.Functions.closeDrawer;
 import static com.example.coffeetime.common.Functions.logout;
 import static com.example.coffeetime.common.Functions.openDrawer;
 import static com.example.coffeetime.common.Functions.redirectActivity;
+import static com.example.coffeetime.state.InitialState.ownerUser;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -37,6 +40,7 @@ public class CartActivity extends AppCompatActivity {
     LCart lCart;
     RecyclerView rv_listCart;
     DrawerLayout drawerLayout;
+    ImageView d_photo;
 
 
     @Override
@@ -50,6 +54,8 @@ public class CartActivity extends AppCompatActivity {
         tv_message = findViewById(R.id.txtMessage);
         button = findViewById(R.id.btn_Start);
         drawerLayout = findViewById(R.id.drawer_layout);
+        d_photo = findViewById(R.id.drawerPhoto);
+        Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
         lCart = new LCart(this, rv_listCart, new TextView[]{tv_subTotal, tv_igv, tv_total});
 
         if (!LCart.cart.isEmpty()) {
