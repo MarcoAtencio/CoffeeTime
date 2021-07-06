@@ -36,6 +36,7 @@ public class UserQRActivity extends AppCompatActivity {
     TextView nameQr;
     DrawerLayout drawerLayout;
     ImageView d_photo;
+    TextView tv_id, tv_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,10 @@ public class UserQRActivity extends AppCompatActivity {
         nameQr = findViewById(R.id.txtNameQr_);
         drawerLayout = findViewById(R.id.drawer_layout);
         d_photo = findViewById(R.id.drawerPhoto);
+        tv_id = findViewById(R.id.drawerId);
+        tv_email = findViewById(R.id.drawerEmail);
+        tv_id.setText(ownerUser.getName());
+        tv_email.setText(ownerUser.getEmail());
         Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
         addImage();
     }
@@ -54,47 +59,6 @@ public class UserQRActivity extends AppCompatActivity {
         nameQr.setText(ownerUser.getName() + " " + ownerUser.getLastName());
         Picasso.get().load(ownerUser.getQrUser()).into(qr);
         Picasso.get().load(ownerUser.getPhotoUri()).into(profileQr);
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.menu_home:
-                intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_cart:
-                intent = new Intent(this, CartActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_history:
-                intent = new Intent(this, HistoryActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_profile:
-                intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_QR:
-                return true;
-
-            case R.id.menu_logout:
-                intent = new Intent(this, SignInActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void ClickMenu(View view) {
@@ -108,7 +72,6 @@ public class UserQRActivity extends AppCompatActivity {
 
 
     public void ClickHome(View view) {
-
         redirectActivity(this, HomeActivity.class);
     }
 

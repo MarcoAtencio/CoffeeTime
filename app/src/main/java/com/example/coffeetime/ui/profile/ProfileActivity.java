@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffeetime.R;
@@ -44,12 +45,11 @@ import static com.example.coffeetime.state.InitialState.ownerUser;
 
 public class ProfileActivity extends AppCompatActivity {
     EditText et_name, et_lastName, et_phone, et_date;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
     FirebaseFirestore firebaseFirestore;
     String name, lastName, phone, dateBirth;
     DrawerLayout drawerLayout;
     ImageView d_photo;
+    TextView tv_id, tv_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +66,11 @@ public class ProfileActivity extends AppCompatActivity {
         et_date.setText(ownerUser.getDateBirth());
         et_phone.setText(ownerUser.getPhone());
         d_photo = findViewById(R.id.drawerPhoto);
+        tv_id = findViewById(R.id.drawerId);
+        tv_email = findViewById(R.id.drawerEmail);
+        tv_id.setText(ownerUser.getName());
+        tv_email.setText(ownerUser.getEmail());
         Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
-        initFirebase();
 
     }
 
@@ -79,45 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.menu_home:
-                intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-                break;
 
-            case R.id.menu_cart:
-                intent = new Intent(this, CartActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_history:
-                intent = new Intent(this, HistoryActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menu_QR:
-                intent = new Intent(this, UserQRActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_profile:
-                return true;
-
-            case R.id.menu_logout:
-                intent = new Intent(this, SignInActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void initFirebase() {
-        FirebaseApp.initializeApp(this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
-    }
 
     public void updateProfile(View view) {
         name = et_name.getText().toString();

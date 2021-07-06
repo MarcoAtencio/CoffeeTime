@@ -9,23 +9,14 @@
         android:roundIcon="@mipmap/ic_logoproject"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeTime">
-        <activity android:name=".ui.UserQR.UserQRActivity"></activity>
-        <activity android:name=".ui.pay.PayActivity" />
-        <activity android:name=".ui.product.ProductActivity" />
-        <activity android:name=".ui.profile.ProfileActivity" />
-        <activity android:name=".ui.history.HistoryActivity" />
-        <activity android:name=".ui.cart.CartActivity" />
-        <activity android:name=".admin.home.HomeAdminActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-            />
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".admin.WelcomeAdminActivity" />
-        <activity android:name=".admin.user.UserAdminActivity" />
-        <activity android:name=".admin.sales.SalesActivity" />
-        <activity android:name=".admin.product.ProductAdminActivity" />
-        <activity android:name=".ui.WelcomeActivity" />
-        <activity android:name=".auth.SignUpActivity" />
-        <activity android:name=".auth.SignInActivity" />
+
+        //Activities
+        <activity
+            android:name=".auth.SignUpActivity"
+            android:theme="@style/Theme.CoffeeTimeAdmin" />
+        <activity
+            android:name=".auth.SignInActivity"
+            android:theme="@style/Theme.CoffeeTimeAdmin" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +24,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity android:name=".ui.WelcomeActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.UserQR.UserQRActivity"></activity>
+        <activity android:name=".ui.pay.PayActivity" />
+        <activity android:name=".ui.product.ProductActivity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
+        <activity android:name=".ui.history.HistoryActivity" />
+        <activity android:name=".ui.cart.CartActivity" />
 
+        //Activities Admin
+        <activity
+            android:name=".admin.WelcomeAdminActivity"
+            android:theme="@style/Theme.CoffeeTimeAdmin" />
+        <activity
+            android:name=".admin.home.HomeAdminActivity"
+            android:theme="@style/Theme.CoffeeTimeAdmin" />
+        <activity
+            android:name=".admin.user.UserAdminActivity"
+            android:theme="@style/Theme.CoffeeTimeAdmin" />
+        <activity android:name=".admin.sales.SalesActivity" />
+        <activity
+            android:name=".admin.product.ProductAdminActivity"
+            android:theme="@style/Theme.CoffeeTimeAdmin" />
+    </application>
 </manifest>

@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView rv_listProduct;
     LProduct lProducts;
     DrawerLayout drawerLayout;
-    TextView d_id, d_email;
+    TextView tv_id, tv_email;
     ImageView d_photo;
 
     @Override
@@ -52,55 +52,16 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         rv_listProduct = findViewById(R.id.listProduct_);
         drawerLayout = findViewById(R.id.drawer_layout);
-        d_id = findViewById(R.id.drawerId);
-        d_email = findViewById(R.id.drawerEmail);
+        tv_id = findViewById(R.id.drawerId);
+        tv_email = findViewById(R.id.drawerEmail);
         d_photo = findViewById(R.id.drawerPhoto);
 
-        d_id.setText(ownerUser.getName());
-        d_email.setText(ownerUser.getEmail());
+        tv_id.setText(ownerUser.getName());
+        tv_email.setText(ownerUser.getEmail());
         Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.menu_home:
-                return true;
-
-            case R.id.menu_cart:
-                intent = new Intent(this, CartActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_history:
-                intent = new Intent(this, HistoryActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_profile:
-                intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menu_QR:
-                intent = new Intent(this, UserQRActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_logout:
-                intent = new Intent(this, SignInActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void showStarterPlate(View view) {
         lProducts = new LProduct(HomeActivity.this, rv_listProduct, STARTER_PLATE);

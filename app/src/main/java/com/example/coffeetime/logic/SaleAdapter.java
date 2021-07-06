@@ -17,6 +17,9 @@ import com.example.coffeetime.model.Sale;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import static com.example.coffeetime.common.Format.CurrencyFormat.roundMoney;
+import static com.example.coffeetime.common.Format.DateFormat.dateFormatBasic;
+
 public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
     private List<Sale> mData;
     private LayoutInflater mInflater;
@@ -50,7 +53,6 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView codeSale, stateSale, amountSale, totalSale, dateSale;
-        String s;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -72,11 +74,9 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
                 stateSale.setTextColor(Color.parseColor("#FF0000"));
 
             }
-            s = new SimpleDateFormat("dd--MM--yyyy").format(item.getDateSale());
-            codeSale.setText(item.getUid().substring(0,8));
-            dateSale.setText(s);
-            totalSale.setText("S/. " + item.getAmountTotal());
-            Toast.makeText(context, item.getUid(), Toast.LENGTH_SHORT).show();
+            codeSale.setText(item.getUid().substring(0, 8));
+            dateSale.setText(dateFormatBasic(item.getDateSale()));
+            totalSale.setText( roundMoney(item.getAmountTotal()));
 
         }
     }

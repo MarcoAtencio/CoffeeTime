@@ -14,6 +14,9 @@ import com.example.coffeetime.admin.product.ProductAdminActivity;
 import com.example.coffeetime.admin.sales.SalesActivity;
 import com.example.coffeetime.admin.user.UserAdminActivity;
 import com.example.coffeetime.auth.SignInActivity;
+import com.example.coffeetime.ui.home.HomeActivity;
+
+import static com.example.coffeetime.common.Functions.redirectActivity;
 
 public class HomeAdminActivity extends AppCompatActivity {
 
@@ -32,29 +35,24 @@ public class HomeAdminActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
         switch (item.getItemId()){
             case R.id.menu_home:
                 return true;
 
             case R.id.menu_product:
-                intent = new Intent(this, ProductAdminActivity.class);
-                startActivity(intent);
+                redirectActivity(this, ProductAdminActivity.class);
                 break;
 
             case R.id.menu_user:
-                intent = new Intent(this, UserAdminActivity.class);
-                startActivity(intent);
+                redirectActivity(this, UserAdminActivity.class);
                 break;
 
             case R.id.menu_sales:
-                intent = new Intent(this, SalesActivity.class);
-                startActivity(intent);
+                redirectActivity(this, SalesActivity.class);
                 break;
 
             case R.id.menu_logout:
-                intent = new Intent(this, SignInActivity.class);
-                startActivity(intent);
+                redirectActivity(this, SignInActivity.class);
                 break;
         }
         return  super.onOptionsItemSelected(item);

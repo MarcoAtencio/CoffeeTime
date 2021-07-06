@@ -23,10 +23,12 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import static com.example.coffeetime.common.Functions.redirectActivity;
+
 public class SignInActivity extends AppCompatActivity {
 
     EditText et_email, et_password;
-    String email,password;
+    String email, password;
     private FirebaseAuth mAuth;
 
 
@@ -52,15 +54,11 @@ public class SignInActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(SignInActivity.this, email, Toast.LENGTH_SHORT).show();
-                                Intent intent;
                                 if (email.equals("marco1@hotmail.com")) {
-                                    intent = new Intent(getApplication(), WelcomeAdminActivity.class);
+                                    redirectActivity(SignInActivity.this, WelcomeAdminActivity.class);
                                 } else {
-
-                                    intent = new Intent(getApplication(), WelcomeActivity.class);
-                                    intent.putExtra("email", email);
+                                    redirectActivity(SignInActivity.this, WelcomeActivity.class, "email", email);
                                 }
-                                startActivity(intent);
 
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -77,8 +75,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
     public void registerUser(View view) {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
+        redirectActivity(this, SignUpActivity.class);
     }
 
     public boolean fieldsNotEmpty() {

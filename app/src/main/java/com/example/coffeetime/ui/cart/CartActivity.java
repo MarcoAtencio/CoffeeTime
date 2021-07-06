@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.coffeetime.R;
 import com.example.coffeetime.auth.SignInActivity;
+import com.example.coffeetime.auth.SignUpActivity;
 import com.example.coffeetime.logic.LCart;
 import com.example.coffeetime.ui.UserQR.UserQRActivity;
 import com.example.coffeetime.ui.history.HistoryActivity;
@@ -41,6 +42,7 @@ public class CartActivity extends AppCompatActivity {
     RecyclerView rv_listCart;
     DrawerLayout drawerLayout;
     ImageView d_photo;
+    TextView tv_id, tv_email;
 
 
     @Override
@@ -55,6 +57,10 @@ public class CartActivity extends AppCompatActivity {
         button = findViewById(R.id.btn_Start);
         drawerLayout = findViewById(R.id.drawer_layout);
         d_photo = findViewById(R.id.drawerPhoto);
+        tv_id = findViewById(R.id.drawerId);
+        tv_email = findViewById(R.id.drawerEmail);
+        tv_id.setText(ownerUser.getName());
+        tv_email.setText(ownerUser.getEmail());
         Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
         lCart = new LCart(this, rv_listCart, new TextView[]{tv_subTotal, tv_igv, tv_total});
 
@@ -65,51 +71,9 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.menu_home:
-                intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_cart:
-                return true;
-
-            case R.id.menu_history:
-                intent = new Intent(this, HistoryActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_profile:
-                intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menu_QR:
-                intent = new Intent(this, UserQRActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.menu_logout:
-                intent = new Intent(this, SignInActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void payCart(View view) {
         if (!LCart.cart.isEmpty()) {
-            Intent intent = new Intent(this, PayActivity.class);
-            startActivity(intent);
+            redirectActivity(this, PayActivity.class);
         } else {
             Toast.makeText(this, "Agregar productos al carrito", Toast.LENGTH_SHORT).show();
         }

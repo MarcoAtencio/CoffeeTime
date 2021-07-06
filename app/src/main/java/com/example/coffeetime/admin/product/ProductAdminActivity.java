@@ -29,6 +29,8 @@ import com.google.firebase.database.annotations.NotNull;
 
 import java.util.UUID;
 
+import static com.example.coffeetime.common.Functions.redirectActivity;
+
 public class ProductAdminActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
@@ -59,30 +61,25 @@ public class ProductAdminActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
         switch (item.getItemId()) {
 
             case R.id.menu_home:
-                intent = new Intent(this, HomeAdminActivity.class);
-                startActivity(intent);
+                redirectActivity(this, HomeAdminActivity.class);
                 break;
 
             case R.id.menu_product:
                 return true;
 
             case R.id.menu_user:
-                intent = new Intent(this, UserAdminActivity.class);
-                startActivity(intent);
+                redirectActivity(this, UserAdminActivity.class);
                 break;
 
             case R.id.menu_sales:
-                intent = new Intent(this, SalesActivity.class);
-                startActivity(intent);
+                redirectActivity(this, SalesActivity.class);
                 break;
 
             case R.id.menu_logout:
-                intent = new Intent(this, SignInActivity.class);
-                startActivity(intent);
+                redirectActivity(this, SignInActivity.class);
                 break;
         }
         return super.onOptionsItemSelected(item);

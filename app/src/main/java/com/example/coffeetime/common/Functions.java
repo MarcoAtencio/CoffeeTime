@@ -11,6 +11,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 public class Functions {
 
 
+
+
+
+    public static void redirectActivity(Activity activity, Class aClass ) {
+        Intent intent = new Intent(activity, aClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
+
+    public static void redirectActivity(Activity activity, Class aClass,String name, String value ) {
+        Intent intent = new Intent(activity, aClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(name, value);
+        activity.startActivity(intent);
+    }
+
+
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);
     }
@@ -22,11 +39,6 @@ public class Functions {
     }
 
 
-    public static void redirectActivity(Activity activity, Class aClass) {
-        Intent intent = new Intent(activity, aClass);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
-    }
 
     public static void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

@@ -18,6 +18,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.example.coffeetime.common.Format.CurrencyFormat.roundMoney;
+
 
 public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.ViewHolder> {
     private List<Product> mData;
@@ -54,9 +56,9 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     }
 
     public void updateFieldToCart() {
-        textViewForProductCart[0].setText("S/" + lCart.subTotal());
-        textViewForProductCart[1].setText("S/" + lCart.igv());
-        textViewForProductCart[2].setText("S/" + lCart.Total());
+        textViewForProductCart[0].setText(roundMoney(lCart.subTotal()));
+        textViewForProductCart[1].setText(roundMoney( lCart.igv()));
+        textViewForProductCart[2].setText(roundMoney(lCart.Total()));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

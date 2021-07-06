@@ -27,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.UUID;
 
+import static com.example.coffeetime.common.Functions.redirectActivity;
+
 public class SignUpActivity extends AppCompatActivity {
     EditText et_email, et_password, et_name, et_lastName, et_phone, et_dateBirth;
     private FirebaseAuth mAuth;
@@ -67,8 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(SignUpActivity.this, "Se a registrado exitosamente", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplication(), SignInActivity.class);
-                                startActivity(intent);
+                                redirectActivity(SignUpActivity.this, SignInActivity.class);
+
                             } else {
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                     // If sign in fails, display a message to the user.

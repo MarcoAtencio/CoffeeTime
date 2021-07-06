@@ -39,6 +39,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.UUID;
 
+import static com.example.coffeetime.common.Functions.redirectActivity;
+
 public class UserAdminActivity extends AppCompatActivity {
 
     EditText et_name, et_lastName, et_email, et_phone, et_date;
@@ -67,30 +69,25 @@ public class UserAdminActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent;
         switch (item.getItemId()) {
 
             case R.id.menu_home:
-                intent = new Intent(this, HomeAdminActivity.class);
-                startActivity(intent);
+                redirectActivity(this, HomeAdminActivity.class);
                 break;
 
             case R.id.menu_product:
-                intent = new Intent(this, ProductAdminActivity.class);
-                startActivity(intent);
+                redirectActivity(this, ProductAdminActivity.class);
                 break;
 
             case R.id.menu_user:
                 return true;
 
             case R.id.menu_sales:
-                intent = new Intent(this, SalesActivity.class);
-                startActivity(intent);
+                redirectActivity(this, SalesActivity.class);
                 break;
 
             case R.id.menu_logout:
-                intent = new Intent(this, SignInActivity.class);
-                startActivity(intent);
+                redirectActivity(this, SignInActivity.class);
                 break;
         }
         return super.onOptionsItemSelected(item);
