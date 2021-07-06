@@ -5,22 +5,22 @@ import java.io.Serializable;
 public class   Product  implements Serializable {
     String uid;
     String name;
-    String price;
+    double price;
     String category;
     String photoURI;
-    String stock;
+    int stock;
     Integer cantProductCart = 0;
 
     public Product() {
         this.uid = "";
         this.name = "";
-        this.price = "";
+        this.price = 0.0;
         this.category = "";
         this.photoURI = "";
-        this.stock = "";
+        this.stock = 0;
     }
 
-    public Product(String uid, String name, String price, String category, String photoURI, String stock) {
+    public Product(String uid, String name, double price, String category, String photoURI, int stock) {
         this.uid = uid;
         this.name = name;
         this.price = price;
@@ -46,11 +46,11 @@ public class   Product  implements Serializable {
         this.name = name;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -70,11 +70,11 @@ public class   Product  implements Serializable {
         this.photoURI = photoURI;
     }
 
-    public String getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
@@ -83,7 +83,7 @@ public class   Product  implements Serializable {
 
 
     public void increaseCantProductCart(){
-        if (Integer.parseInt(this.stock) > this.cantProductCart){
+        if (this.stock > this.cantProductCart){
             this.cantProductCart++;
         }
     }

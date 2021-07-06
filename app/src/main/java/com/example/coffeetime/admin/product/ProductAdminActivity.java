@@ -35,8 +35,16 @@ public class ProductAdminActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    EditText et_uid, et_name, et_price, et_stock, et_category, et_photoUri;
-    String uid, name, price, stock, category, photoUri;
+    EditText et_uid;
+    EditText et_name;
+    EditText et_price;
+    EditText et_stock;
+    EditText et_category;
+    EditText et_photoUri;
+    String category;
+    String uid, name, photoUri;
+    double price;
+    int stock;
 
 
     @Override
@@ -95,8 +103,8 @@ public class ProductAdminActivity extends AppCompatActivity {
         if (fieldsNotEmpty()) {
             uid = et_uid.getText().toString();
             name = et_name.getText().toString();
-            price = et_price.getText().toString();
-            stock = et_stock.getText().toString();
+            price = Double.parseDouble(et_price.getText().toString());
+            stock = Integer.parseInt(et_stock.getText().toString());
             category = et_category.getText().toString();
             photoUri = et_photoUri.getText().toString();
 
@@ -127,7 +135,7 @@ public class ProductAdminActivity extends AppCompatActivity {
                     Product product = snapshot.getValue(Product.class);
                     et_uid.setText(product.getUid());
                     et_name.setText(product.getName());
-                    et_price.setText(product.getPrice());
+                    et_price.setText("" + product.getPrice());
                     et_stock.setText(product.getStock());
                     et_category.setText(product.getCategory());
                     et_photoUri.setText(product.getPhotoURI());
@@ -144,20 +152,19 @@ public class ProductAdminActivity extends AppCompatActivity {
     }
 
     public void modifyProduct(View view) {
-
-        String uid = et_uid.getText().toString();
-        String name = et_name.getText().toString();
-        String price = et_price.getText().toString();
-        String stock = et_stock.getText().toString();
-        String category = et_category.getText().toString();
-        String photoUrl = et_photoUri.getText().toString();
+        uid = et_uid.getText().toString();
+        name = et_name.getText().toString();
+        price = Double.parseDouble(et_price.getText().toString());
+        stock = Integer.parseInt(et_stock.getText().toString());
+        category = et_category.getText().toString();
+        photoUri = et_photoUri.getText().toString();
         Product product = new Product();
         product.setUid(uid);
         product.setName(name);
         product.setPrice(price);
         product.setStock(stock);
         product.setCategory(category);
-        product.setPhotoURI(photoUrl);
+        product.setPhotoURI(photoUri);
         databaseReference.child("Product").child(product.getUid()).setValue(product);
         Toast.makeText(this, "Se modifico exitosamente", Toast.LENGTH_SHORT).show();
         fieldReset();
@@ -167,15 +174,13 @@ public class ProductAdminActivity extends AppCompatActivity {
     public void deleteProduct(View view) {
 
         String uid = et_uid.getText().toString();
-        if (!uid.isEmpty()){
+        if (!uid.isEmpty()) {
             Product product = new Product();
             product.setUid(uid);
             databaseReference.child("Product").child(product.getUid()).removeValue();
             Toast.makeText(this, "Se elimino exitosamente", Toast.LENGTH_SHORT).show();
             fieldReset();
-        }
-
-        else {
+        } else {
             Toast.makeText(this, "Ingrese el id del producto", Toast.LENGTH_SHORT).show();
         }
     }
@@ -183,11 +188,11 @@ public class ProductAdminActivity extends AppCompatActivity {
     public boolean fieldsNotEmpty() {
         uid = et_uid.getText().toString();
         name = et_name.getText().toString();
-        price = et_price.getText().toString();
-        stock = et_stock.getText().toString();
+        price = Double.parseDouble(et_price.getText().toString());
+        stock = Integer.parseInt(et_stock.getText().toString());
         category = et_category.getText().toString();
         photoUri = et_photoUri.getText().toString();
-        return !name.isEmpty() && !price.isEmpty() && !price.isEmpty() && !stock.isEmpty() && !category.isEmpty() && !photoUri.isEmpty();
+        return !name.isEmpty()  && !category.isEmpty() && !photoUri.isEmpty();
     }
 
     public void fieldReset() {

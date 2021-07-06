@@ -76,7 +76,6 @@ public class LProduct {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         productAdapter = new ProductAdapter(getProductToStarterPlate(categoryProduct), context);
         recyclerView.setAdapter(productAdapter);
-
     }
 
 

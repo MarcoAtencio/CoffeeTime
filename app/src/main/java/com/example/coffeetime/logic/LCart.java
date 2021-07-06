@@ -32,7 +32,7 @@ public class LCart {
     public double subTotal() {
         double subTotal_ = 0;
         for (int i = 0; i < cart.size(); i++) {
-            subTotal_ += Double.parseDouble(cart.get(i).getPrice()) * cart.get(i).cantProduct();
+            subTotal_ += cart.get(i).getPrice() * cart.get(i).cantProduct();
         }
         return subTotal_;
     }

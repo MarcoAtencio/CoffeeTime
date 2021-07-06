@@ -69,7 +69,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context.getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
                     item.increaseCantProductCart();
                     cart.add(item);
                 }

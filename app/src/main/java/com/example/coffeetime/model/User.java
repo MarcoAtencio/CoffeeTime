@@ -4,6 +4,7 @@ import com.example.coffeetime.common.Constants;
 
 import static com.example.coffeetime.common.Constants.DEFAULT_PROFILE;
 import static com.example.coffeetime.common.Constants.DEFAULT_QR;
+import static com.example.coffeetime.common.Constants.ROL_USER;
 
 public class User {
     String name;
@@ -13,6 +14,7 @@ public class User {
     String dateBirth;
     String photoUri;
     String qrUser;
+    String rol;
 
     public User() {
         this.name = "";
@@ -22,6 +24,7 @@ public class User {
         this.dateBirth = "";
         this.photoUri = DEFAULT_PROFILE;
         this.qrUser = DEFAULT_QR;
+        this.rol = ROL_USER;
     }
 
     public User(String name, String lastName, String email, String phone, String dateBirth, String photoUri, String qrUser) {
@@ -32,8 +35,8 @@ public class User {
         this.dateBirth = dateBirth;
         this.photoUri = photoUri;
         this.qrUser = qrUser;
+        this.rol = ROL_USER;
     }
-
 
     public String getName() {
         return name;
@@ -49,6 +52,14 @@ public class User {
 
     public String getQrUser() {
         return qrUser;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public void setQrUser(String qrUser) {

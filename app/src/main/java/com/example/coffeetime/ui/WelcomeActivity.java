@@ -32,7 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
         initialState = new InitialState(this);
         initialState.stateListProducts();
         initialState.stateUser(email);
-        initialState.stateListOwnPurchase(email);
+        //initialState.stateListOwnPurchase(email);
 
     }
 

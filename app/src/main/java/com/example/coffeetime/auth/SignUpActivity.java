@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.coffeetime.R;
 import com.example.coffeetime.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
@@ -88,7 +89,12 @@ public class SignUpActivity extends AppCompatActivity {
             user.setPhone(phone);
             user.setDateBirth(dateBirth);
             user.setEmail(email);
-            firebaseFirestore.collection("User").document(user.getEmail()).set(user);
+            firebaseFirestore.collection("User").document(user.getEmail()).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+
+                }
+            });
         } else {
             Toast.makeText(SignUpActivity.this, "Ingrese los datos", Toast.LENGTH_SHORT).show();
         }
