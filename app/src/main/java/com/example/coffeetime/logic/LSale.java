@@ -43,7 +43,7 @@ public class LSale {
 
         sale.setUid(UUID.randomUUID().toString());
         sale.setDateSale(new Date());
-        sale.setAmountTotal("" + lCart.Total());
+        sale.setAmountTotal(lCart.Total());
         sale.setUser(ownerUser.getEmail());
         sale.setState(false);
         sale.setListProduct(cart);

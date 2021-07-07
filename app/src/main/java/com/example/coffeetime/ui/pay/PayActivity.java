@@ -15,6 +15,7 @@ import com.example.coffeetime.model.Sale;
 import com.example.coffeetime.ui.home.HomeActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import static com.example.coffeetime.common.Format.CurrencyFormat.roundMoney;
 import static com.example.coffeetime.logic.LCart.cart;
 
 public class PayActivity extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class PayActivity extends AppCompatActivity {
         tv_totalPay = findViewById(R.id.pricePay);
         tv_cantPay = findViewById(R.id.titlePay);
         tv_cantPay.setText(cart.size() + " " + "Articulos en tu carrito");
-        tv_totalPay.setText("S/. " + lcart.Total());
+        tv_totalPay.setText(roundMoney(lcart.Total()));
 
     }
 

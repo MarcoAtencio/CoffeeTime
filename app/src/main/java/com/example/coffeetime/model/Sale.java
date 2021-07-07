@@ -11,18 +11,18 @@ public class Sale {
     String user;
     Date dateSale;
     boolean state;
-    String amountTotal;
+    double amountTotal;
 
     public Sale() {
         this.uid = "";
         this.user = "";
         this.state = STATE_PENDING;
         this.listProduct = new ArrayList<Product>();
-        this.amountTotal = "";
+        this.amountTotal = 0.0;
 
     }
 
-    public Sale(String uid, ArrayList<Product> listProduct, String amountTotal, boolean state ,String user, Date dateSale) {
+    public Sale(String uid, ArrayList<Product> listProduct, double amountTotal, boolean state ,String user, Date dateSale) {
         this.uid = uid;
         this.user = user;
         this.state = state;
@@ -71,11 +71,11 @@ public class Sale {
         this.listProduct = listProduct;
     }
 
-    public String getAmountTotal() {
+    public double getAmountTotal() {
         return amountTotal;
     }
 
-    public void setAmountTotal(String amountTotal) {
+    public void setAmountTotal(double amountTotal) {
         this.amountTotal = amountTotal;
     }
 }

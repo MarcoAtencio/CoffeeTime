@@ -82,8 +82,13 @@ public class InitialState {
                                 sale.setUid(queryDocumentSnapshot.getData().get("uid").toString());
                                 sale.setState((boolean) queryDocumentSnapshot.getData().get("state"));
                                 sale.setUser(queryDocumentSnapshot.getData().get("user").toString());
-                                sale.setAmountTotal(queryDocumentSnapshot.getData().get("amountTotal").toString());
+                                sale.setAmountTotal(Double.parseDouble(queryDocumentSnapshot.getData().get("amountTotal").toString()));
+
+                                /*
                                 sale.setListProduct((ArrayList<Product>) queryDocumentSnapshot.getData().get("listProduct"));
+
+                                 */
+
                                 listOwnPurchase.add(sale);
 
                                 Toast.makeText(context, "" + timestamp.toDate(), Toast.LENGTH_LONG).show();
