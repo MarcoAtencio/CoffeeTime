@@ -112,10 +112,9 @@ public class ProductAdminActivity extends AppCompatActivity implements AdapterVi
             uid = et_uid.getText().toString();
             name = et_name.getText().toString();
             price = Double.parseDouble(et_price.getText().toString());
-            category = ( spinner1.getSelectedItemPosition() + 1) + "";
+            category = (spinner1.getSelectedItemPosition() + 1) + "";
             stock = Integer.parseInt(et_stock.getText().toString());
             photoUri = et_photoUri.getText().toString();
-
 
 
             Product product = new Product();
@@ -149,7 +148,7 @@ public class ProductAdminActivity extends AppCompatActivity implements AdapterVi
                     et_name.setText(product.getName());
                     et_price.setText("" + product.getPrice());
                     et_stock.setText("" + product.getStock());
-
+                    spinner1.setSelection(Integer.parseInt(product.getCategory())-1);
                     et_photoUri.setText(product.getPhotoURI());
 
                 }
@@ -167,11 +166,14 @@ public class ProductAdminActivity extends AppCompatActivity implements AdapterVi
         uid = et_uid.getText().toString();
         name = et_name.getText().toString();
         price = Double.parseDouble(et_price.getText().toString());
+        category = (spinner1.getSelectedItemPosition() + 1) + "";
         stock = Integer.parseInt(et_stock.getText().toString());
+
         photoUri = et_photoUri.getText().toString();
         Product product = new Product();
         product.setUid(uid);
         product.setName(name);
+        product.setCategory(category);
         product.setPrice(price);
         product.setStock(stock);
 

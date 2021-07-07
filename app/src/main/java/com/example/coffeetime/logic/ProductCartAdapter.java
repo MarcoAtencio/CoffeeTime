@@ -57,7 +57,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
 
     public void updateFieldToCart() {
         textViewForProductCart[0].setText(roundMoney(lCart.subTotal()));
-        textViewForProductCart[1].setText(roundMoney( lCart.igv()));
+        textViewForProductCart[1].setText(roundMoney(lCart.igv()));
         textViewForProductCart[2].setText(roundMoney(lCart.Total()));
     }
 
@@ -85,6 +85,9 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
                 public void onClick(View v) {
                     item.decreaseCantProductCart();
                     updateFieldsToProductCart(item);
+                    if (item.cantProduct() <= 0){
+                        lCart.cart.remove(item);
+                    }
                 }
             });
             increaseCant.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +101,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
 
         public void updateFieldsToProductCart(final Product item) {
             name.setText(item.getName());
-            price.setText("S/: " + item.getPrice());
+            price.setText("S/. " + item.getPrice());
             cant.setText("" + item.cantProduct());
             updateFieldToCart();
         }
