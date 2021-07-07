@@ -31,6 +31,7 @@ import java.util.Date;
 
 import static com.example.coffeetime.logic.LProduct.listProduct;
 import static com.example.coffeetime.logic.LSale.listOwnPurchase;
+import static com.example.coffeetime.logic.LSale.listSale;
 
 public class InitialState {
     FirebaseDatabase firebaseDatabase;
@@ -100,6 +101,39 @@ public class InitialState {
                     }
                 });
 
+    }
+
+    public void stateListSale(){
+        listSale.clear();
+        firebaseFirestore.collection("Sale").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                                Sale sale = new Sale();
+                                Timestamp timestamp = (Timestamp) queryDocumentSnapshot.getData().get("dateSale");
+                                sale.setDateSale(timestamp.toDate());
+                                sale.setUid(queryDocumentSnapshot.getData().get("uid").toString());
+                                sale.setState((boolean) queryDocumentSnapshot.getData().get("state"));
+                                sale.setUser(queryDocumentSnapshot.getData().get("user").toString());
+                                sale.setAmountTotal(Double.parseDouble(queryDocumentSnapshot.getData().get("amountTotal").toString()));
+
+                                /*
+                                sale.setListProduct((ArrayList<Product>) queryDocumentSnapshot.getData().get("listProduct"));
+
+                                 */
+
+                                listSale.add(sale);
+
+                                /*
+                                Toast.makeText(context, "" + timestamp.toDate(), Toast.LENGTH_LONG).show();
+                                 */
+                            }
+
+                        }
+                    }
+                });
     }
 
     public void stateUser(String email) {

@@ -3,6 +3,9 @@ package com.example.coffeetime.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+
+
 import static com.example.coffeetime.common.Constants.STATE_PENDING;
 
 public class Sale {

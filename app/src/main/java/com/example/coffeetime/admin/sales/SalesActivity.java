@@ -2,6 +2,7 @@ package com.example.coffeetime.admin.sales;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,15 +15,29 @@ import com.example.coffeetime.admin.home.HomeAdminActivity;
 import com.example.coffeetime.admin.product.ProductAdminActivity;
 import com.example.coffeetime.admin.user.UserAdminActivity;
 import com.example.coffeetime.auth.SignInActivity;
+import com.example.coffeetime.logic.LSale;
+import com.example.coffeetime.model.Sale;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+
+import java.util.ArrayList;
 
 import static com.example.coffeetime.common.Functions.redirectActivity;
 
 public class SalesActivity extends AppCompatActivity {
 
+    RecyclerView rv_listSale;
+    LSale lSale;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales);
+        rv_listSale = findViewById(R.id.listhistory);
+        lSale = new LSale(this,rv_listSale);
+        lSale.showSaleToRecyclerView();
+
+
     }
 
     @Override

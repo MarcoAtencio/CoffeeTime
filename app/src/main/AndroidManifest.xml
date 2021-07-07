@@ -43,7 +43,8 @@
         <activity
             android:name=".admin.user.UserAdminActivity"
             android:theme="@style/Theme.CoffeeTimeAdmin" />
-        <activity android:name=".admin.sales.SalesActivity" />
+        <activity android:name=".admin.sales.SalesActivity"
+            android:theme="@style/Theme.CoffeeTimeAdmin"/>
         <activity
             android:name=".admin.product.ProductAdminActivity"
             android:theme="@style/Theme.CoffeeTimeAdmin" />

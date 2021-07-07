@@ -21,6 +21,8 @@ public class LSale {
 
     Context context;
     public static ArrayList<Sale> listOwnPurchase = new ArrayList<Sale>();
+    public static ArrayList<Sale> listSale = new ArrayList<Sale>();
+
     FirebaseFirestore firebaseFirestore;
     RecyclerView recyclerView;
     Sale sale = new Sale();
@@ -36,7 +38,7 @@ public class LSale {
         this.context = context_;
         this.recyclerView = recyclerView_;
         firebaseFirestore = FirebaseFirestore.getInstance();
-        showDataToRecyclerView();
+
     }
 
     public void registerSale() {
@@ -51,10 +53,19 @@ public class LSale {
         listOwnPurchase.add(sale);
     }
 
-    private void showDataToRecyclerView() {
+    public void showDataToRecyclerView() {
         SaleAdapter saleAdapter = new SaleAdapter(listOwnPurchase, context);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(saleAdapter);
     }
+
+    public void showSaleToRecyclerView() {
+        SaleAdapter saleAdapter = new SaleAdapter(listSale, context);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(saleAdapter);
+    }
+
+
 }

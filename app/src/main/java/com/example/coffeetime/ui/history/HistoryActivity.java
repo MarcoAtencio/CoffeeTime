@@ -52,6 +52,7 @@ public class HistoryActivity extends AppCompatActivity {
         tv_email.setText(ownerUser.getEmail());
         Picasso.get().load(ownerUser.getPhotoUri()).into(d_photo);
         lSale = new LSale(HistoryActivity.this, rv_listOwnPurchase);
+        lSale.showDataToRecyclerView();
     }
 
 
