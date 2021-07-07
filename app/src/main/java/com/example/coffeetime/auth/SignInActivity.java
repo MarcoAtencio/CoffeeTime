@@ -54,7 +54,7 @@ public class SignInActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(SignInActivity.this, email, Toast.LENGTH_SHORT).show();
-                                if (email.equals("admin@CoffeeTime.com")) {
+                                if (email.equals("admin@coffeetime.com")) {
                                     redirectActivity(SignInActivity.this, WelcomeAdminActivity.class);
                                 } else {
                                     redirectActivity(SignInActivity.this, WelcomeActivity.class, "email", email);
