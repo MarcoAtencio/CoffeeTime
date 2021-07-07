@@ -34,7 +34,7 @@ import java.util.UUID;
 
 import static com.example.coffeetime.common.Functions.redirectActivity;
 
-public class ProductAdminActivity extends AppCompatActivity{
+public class ProductAdminActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -42,11 +42,10 @@ public class ProductAdminActivity extends AppCompatActivity{
     EditText et_name;
     EditText et_price;
     EditText et_stock;
-    EditText et_category;
     EditText et_photoUri;
-    String category;
     String uid, name, photoUri;
     Spinner spinner1;
+    String category;
     double price;
     int stock;
 
@@ -58,27 +57,10 @@ public class ProductAdminActivity extends AppCompatActivity{
         et_uid = (EditText) findViewById(R.id.idproduct_);
         et_name = (EditText) findViewById(R.id.product_);
         et_stock = (EditText) findViewById(R.id.stock_);
-        spinner1 = (Spinner)findViewById(R.id.spinner1);
-        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
+        spinner1 = (Spinner) findViewById(R.id.spinner_);
+
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.categories));
         spinner1.setAdapter(adapter);
-       /* spinner1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Toast.makeText(ProductAdminActivity.this, position, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-            */
-        /*adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-         */
-        /*
-        et_category = (EditText) findViewById(R.id.category_);
-
-         */
-
         et_price = (EditText) findViewById(R.id.priceProducto_);
         et_photoUri = (EditText) findViewById(R.id.url_);
 
@@ -130,12 +112,12 @@ public class ProductAdminActivity extends AppCompatActivity{
             uid = et_uid.getText().toString();
             name = et_name.getText().toString();
             price = Double.parseDouble(et_price.getText().toString());
-            //category = spinner1.getSelectedItem().toString();
+            category = ( spinner1.getSelectedItemPosition() + 1) + "";
             stock = Integer.parseInt(et_stock.getText().toString());
             photoUri = et_photoUri.getText().toString();
 
 
-            /*
+
             Product product = new Product();
             product.setUid(uid);
             product.setName(name);
@@ -144,15 +126,13 @@ public class ProductAdminActivity extends AppCompatActivity{
             product.setPhotoURI(photoUri);
             product.setCategory(category);
             databaseReference.child("Product").child(product.getUid()).setValue(product);
-             */
-
-
-
+            Toast.makeText(this, "Producto registrado", Toast.LENGTH_SHORT).show();
             fieldReset();
         } else {
-            Toast.makeText(this, "Ingrese los datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingrese datos", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(ProductAdminActivity.this, spinner1.getSelectedItem() + "", Toast.LENGTH_LONG).show();
+
+
     }
 
     public void findProduct(View view) {
@@ -169,7 +149,7 @@ public class ProductAdminActivity extends AppCompatActivity{
                     et_name.setText(product.getName());
                     et_price.setText("" + product.getPrice());
                     et_stock.setText("" + product.getStock());
-                    et_category.setText(product.getCategory());
+
                     et_photoUri.setText(product.getPhotoURI());
 
                 }
@@ -188,14 +168,13 @@ public class ProductAdminActivity extends AppCompatActivity{
         name = et_name.getText().toString();
         price = Double.parseDouble(et_price.getText().toString());
         stock = Integer.parseInt(et_stock.getText().toString());
-        category = et_category.getText().toString();
         photoUri = et_photoUri.getText().toString();
         Product product = new Product();
         product.setUid(uid);
         product.setName(name);
         product.setPrice(price);
         product.setStock(stock);
-        product.setCategory(category);
+
         product.setPhotoURI(photoUri);
         databaseReference.child("Product").child(product.getUid()).setValue(product);
         Toast.makeText(this, "Se modifico exitosamente", Toast.LENGTH_SHORT).show();
@@ -222,18 +201,26 @@ public class ProductAdminActivity extends AppCompatActivity{
         name = et_name.getText().toString();
         price = Double.parseDouble(et_price.getText().toString());
         stock = Integer.parseInt(et_stock.getText().toString());
-        category = et_category.getText().toString();
+
         photoUri = et_photoUri.getText().toString();
-        return !name.isEmpty()  && !category.isEmpty() && !photoUri.isEmpty();
+        return !name.isEmpty() && !photoUri.isEmpty();
     }
 
     public void fieldReset() {
         et_uid.setText("");
         et_name.setText("");
         et_price.setText("");
-        et_category.setText("");
         et_stock.setText("");
         et_photoUri.setText("");
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(this, position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

@@ -1,9 +1,9 @@
 <resources>
     <string-array name="categories">
-        <item> 1 </item>
-        <item> 2 </item>
-        <item> 3 </item>
-        <item> 4 </item>
+        <item>Entrada</item>
+        <item>Menú</item>
+        <item>Bebidas</item>
+        <item>Postres</item>
     </string-array>
     
     <string name="app_name">CoffeeTime</string>
