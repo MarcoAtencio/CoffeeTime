@@ -91,7 +91,9 @@ public class InitialState {
 
                                 listOwnPurchase.add(sale);
 
+                                /*
                                 Toast.makeText(context, "" + timestamp.toDate(), Toast.LENGTH_LONG).show();
+                                 */
                             }
 
                         }

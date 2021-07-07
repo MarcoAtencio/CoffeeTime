@@ -54,8 +54,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconImageView);
             name = itemView.findViewById(R.id.name_);
+            /*
             stock = itemView.findViewById(R.id.stock_);
             category = itemView.findViewById(R.id.category_);
+
+             */
             price = itemView.findViewById(R.id.price_);
             button = itemView.findViewById(R.id.button);
         }
@@ -63,9 +66,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public void bindData(final Product item){
             Picasso.get().load(item.getPhotoURI()).into(iconImage);
             name.setText(item.getName());
+            /*
             stock.setText("Disponible: " + item.getStock());
+
             category.setText("Categoría: " + item.getCategory());
-            price.setText("S/: " + item.getPrice());
+             */
+            price.setText("S/. " + item.getPrice());
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
